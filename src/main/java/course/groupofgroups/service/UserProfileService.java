@@ -8,4 +8,6 @@ public interface UserProfileService {
     public List<UserProfile> allUsers();
 
     public UserProfile findById(Long id);
+
+    public boolean add(UserProfile user);
 }

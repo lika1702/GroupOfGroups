@@ -31,19 +31,22 @@
             </div>
         </div>
     </header>
-    <section class="section d-flex justify-content-center">
-        <div class="col-4 login-card">
-            <h2>Вход</h2>
+    <section class="section section-registration d-flex justify-content-center">
+        <div class="col-4 login-card registration-card">
+            <h2>Регистрация</h2>
             <div class="row justify-content-center">
-                <form th:action="@{/login}" method="post" class="col-9">
-                    <input class="form-control" type="text" name="username" placeholder="Email">
-                    <input class="form-control" type="password" name="password" placeholder="Пароль">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-auth btn-login" type="submit">Войти</button>
-                        <a th:href="@{/registration}" class="btn btn-auth btn-registration">Регистрация</a>
+                <form th:action="@{/registration}" method="post" class="col-12">
+                    <input class="form-control" type="text" name="surname" placeholder="Фамилия" pattern="[A-Za-zА-Яа-я\s]{1,50}">
+                    <input class="form-control" type="text" name="name" placeholder="Имя" pattern="[A-Za-zА-Яа-я\s]{1,50}">
+                    <input class="form-control" type="text" name="phone" placeholder="Номер телефона 90999999999" pattern="[0-9]{11}">
+                    <input class="form-control" type="email" name="email" placeholder="Email">
+                    <input class="form-control" type="password" name="password" id="password" placeholder="Пароль" pattern="[^\s]{6,20}">
+                    <input class="form-control" type="password" name="confirmPassword" id="confirmPassword" placeholder="Подтвердите пароль">
+                    <p class="hint" id="message">Введенные пароли должны совпадать</p>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-auth btn-registration" type="submit" id="btn-registration" disabled>Регистрация</button>
                     </div>
                 </form>
-                <a th:href="@{/registration}" class="col-9 hint">Забыли пароль или не можете войти?</a>
             </div>
         </div>
     </section>
@@ -61,6 +64,8 @@
             </div>
         </div>
     </footer>
+    <script th:src="@{/resources/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/resources/js/registration.js}"></script>
 </body>
 
 </html>
