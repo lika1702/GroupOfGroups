@@ -1,8 +1,10 @@
 package course.groupofgroups.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,5 +32,8 @@ public class Profile extends CommonData {
 
     @Column(name = "biography")
     private String biography;
+
+    @OneToMany(mappedBy = "profiles")
+    private List<Education> educations;
 
 }
