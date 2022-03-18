@@ -7,22 +7,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "User")
 public class UserProfile extends CommonData {
-
-    @Column(name = "surname")
-    private String surname;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "phone")
-    private String phone;
 
     @Column(name = "email")
     private String email;

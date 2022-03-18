@@ -3,7 +3,6 @@ package course.groupofgroups.service.Implementation;
 import course.groupofgroups.model.UserProfile;
 import course.groupofgroups.repository.UserProfileRepository;
 import course.groupofgroups.service.UserProfileService;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,5 +36,4 @@ public class UserProfileServiceImpl implements UserProfileService {
         repository.save(user);
         return true;
     }
-
 }

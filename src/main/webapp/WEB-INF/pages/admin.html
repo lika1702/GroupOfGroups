@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход Group of Groups</title>
+    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../resources/css/style.css">
+</head>
+
+<body>
+    <div th:replace="~{template.html::admin-header}"></div>
+    <section class="section section-less-margin admin-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 th:text="#{admin.title}"></h1>
+                    <table class="table table-hover table-striped admin-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" th:text="#{admin.fio}"></th>
+                                <th scope="col">Email</th>
+                                <th scope="col" th:text="#{admin.date-of-registration}"></th>
+                                <th scope="col" th:text="#{admin.date-of-last-login}"></th>
+                                <th scope="col" th:text="#{admin.role}"></th>
+                                <th scope="col" th:text="#{admin.block}"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <th:block>
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div th:replace="~{template.html::footer}"></div>
+    <script th:src="@{/resources/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/resources/js/registration.js}"></script>
+</body>
+
+</html>

@@ -25,6 +25,11 @@ public class UserProfileController {
         return "registration";
     }
 
+    @GetMapping(value = "/profile")
+    public String profilePage(Model model) {
+        return "profile";
+    }
+
     @PostMapping(value = "/registration")
     public String registration(UserProfile user, Model model) {
         if (!service.add(user)) {

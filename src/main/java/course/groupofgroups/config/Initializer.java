@@ -2,11 +2,15 @@ package course.groupofgroups.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{WebConfiguration.class, HibernateConfiguration.class, SecurityConfiguration.class};
+        return new Class[]{
+            WebConfiguration.class,
+            HibernateConfiguration.class,
+            SecurityConfiguration.class
+        };
     }
 
     @Override
@@ -18,5 +22,5 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-    
+
 }

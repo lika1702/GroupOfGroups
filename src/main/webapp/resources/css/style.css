@@ -5,11 +5,14 @@
     --logo-color: #211428;
     --white: #fff;
     --gray: #ccc;
-    --yellow: #d7d600;
+    --yellow: #ff0;
+    --purple: #a100ff;
     --light-purple: #d4bfe0;
     --light-gray: #eee;
+    --light-yellow: #fdffa1;
+    --light-red: #ffa1a1;
     --dark-yellow: #d7d600;
-    --dark-gray: #444;
+    --dark-gray: #777;
     --dark-purple: #5a0090;
 }
 
@@ -43,21 +46,32 @@
 
 /*END HEADER*/
 
+
+/*COMMON*/
+body {
+    font: 16px var(--bs-font-sans-serif);
+    color: var(--dark-gray);
+}
+
+.card {
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--gray);
+}
+
+/*END COMMON*/
 /*SECTION*/
 .section {
     padding: 100px 0;
-    background: url(../img/background.png) center/cover no-repeat;
+    background: url(../img/background.png) center/cover no-repeat fixed;
 }
 
-.section-registration {
-    padding: 45px 0;
+.section-less-margin {
+    padding: 40px 0;
 }
 
 .login-card {
     padding: 30px 50px 50px;
-    background: var(--white);
-    border-radius: 20px;
-    border: 1px solid var(--gray);
     box-shadow: 0 0 15px rgba(0, 0, 0, .2);
 }
 
@@ -127,11 +141,11 @@
 }
 
 .btn-registration {
-    background: var(--yellow);
+    background: var(--dark-yellow);
 }
 
 .btn-registration::after {
-    background: var(--yellow);
+    background: var(--dark-yellow);
 }
 
 .hint {
@@ -140,10 +154,213 @@
 }
 
 .hint:hover {
-    color: var(--yellow);
+    color: var(--dark-yellow);
 }
 
 /*END SECTION*/
+
+/*PROFILE*/
+.profile-aside {
+    height: 100%;
+    padding: 30px;
+}
+
+.profile-card {
+    height: 100%;
+    padding: 30px;
+}
+
+.profile-aside h2,
+.profile-card h2 {
+    font: 30px var(--bs-font-sans-serif);
+}
+
+.profile-aside ul,
+.profile-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile-aside ul li a {
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+.profile-card ul li a {
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+.profile-card ul li a svg {
+    margin-right: 10px;
+}
+
+.navigation li {
+    margin: 0 15px 0 0;
+    padding: 5px 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: all .2s linear;
+}
+
+.navigation li:hover {
+    transform: translateX(15px);
+    border-color: var(--yellow);
+    background: var(--light-yellow);
+}
+
+.navigation li:last-child {
+    margin-top: 70px;
+}
+
+.navigation li:last-child a {
+    color: var(--gray);
+}
+
+.navigation li:last-child:hover {
+    transform: none;
+    border-color: transparent;
+    background: transparent;
+}
+
+.navigation li:last-child a:hover {
+    color: var(--light-red);
+}
+
+.edit-menu li {
+    padding: 5px 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: all .2s linear;
+}
+
+.edit-menu li:hover {
+    border-color: var(--yellow);
+    background: var(--light-yellow);
+}
+
+.groups {
+    margin-top: 30px;
+}
+
+.groups li {
+    margin: 10px 0 0 30px;
+    padding: 5px 15px;
+    border: 1px solid var(--dark-gray);
+    border-radius: 5px;
+    transition: all .1s linear;
+}
+
+.groups li:hover {
+    background: var(--light-purple);
+    border-color: var(--purple);
+    transform: translateX(-15px);
+}
+
+.groups li:hover a,
+.groups li a:hover {
+    color: var(--white) !important;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+.tags li {
+    padding: 2px 15px;
+    margin: 0 10px 10px 0;
+    border-radius: 50px;
+    background: var(--light-purple);
+    border: 1px solid var(--purple);
+    transition: all .2s ease-out;
+}
+
+.tags li:hover {
+    box-shadow: 0 0 3px 0.20rem rgba(90, 0, 144, .15);
+    transform: scale(1.1);
+}
+
+.tags li a {
+    line-height: 25px;
+    font-size: 15px;
+    color: var(--dark-purple) !important;
+}
+
+.photo div {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: var(--light-gray);
+}
+
+.characters td {
+    vertical-align: top;
+    padding: 5px 0;
+}
+
+.block-header + tr td {
+    padding: 10px 0 5px;
+}
+
+.block-character-header {
+    padding: 30px 0 10px !important;
+    border-bottom: 1px solid var(--light-gray);
+    font-style: italic;
+}
+
+/*END PROFILE*/
+
+/*ADMIN PAGE*/
+.admin-header {
+    background: var(--white);
+}
+
+.admin-menu {
+    display: flex;
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.admin-menu span {
+    margin-right: 15px;
+}
+
+.admin-menu li {
+    outline: 1px solid transparent;
+    outline-offset: 10px;
+    border-radius: 1px;
+    transition: all .2s linear;
+}
+
+.admin-menu li:hover {
+    outline-color: var(--dark-gray);
+}
+
+.admin-menu li a {
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+.admin-section {
+    min-height: 75vh;
+    background: var(--light-gray);
+}
+.admin-section h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.admin-table {
+    color: var(--dark-gray);
+}
+.admin-table tbody tr:nth-child(odd){
+    background: #f5e8fc;
+}
+/*END ADMIN PAGE*/
 
 /*FOOTER*/
 .footer {

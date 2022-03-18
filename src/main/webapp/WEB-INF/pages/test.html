@@ -11,40 +11,40 @@
 </head>
 
 <body>
-    <header class="header">
+    <header class="header admin-header">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-6 d-flex align-items-center">
-                    <img th:src="@{/resources/img/logo_sm.png}" class="logo" alt="">
-                    <h1>Group of Groups</h1>
-                </div>
-                <div class="col-4 offset-2">
-                    <form th:action="@{/search}" method="get">
-                        <div class="input-group flex-nowrap">
-                            <input type="text" class="form-control" name="search" placeholder="Поиск...">
-                            <button class="btn btn-search" type="button" id="button-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                </svg></button>
-                        </div>
-                    </form>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="admin-menu">
+                        <li><a href="/"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                    </svg></span>На главную</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </header>
-    <section class="section section-registration d-flex justify-content-center">
-        <div class="col-4 login-card registration-card">
-            <h2>Регистрация</h2>
-            <div class="row justify-content-center">
-                <form th:action="@{/login}" method="post" class="col-9">
-                   <input class="form-control" type="text" name="surname" placeholder="Фамилия">
-                   <input class="form-control" type="text" name="name" placeholder="Имя">
-                   <input class="form-control" type="text" name="phone" placeholder="Номер телефона">
-                    <input class="form-control" type="text" name="email" placeholder="Email">
-                    <input class="form-control" type="password" name="password" placeholder="Пароль" pattern="[^\s]{6,20}">
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-auth btn-registration" type="submit" id="btn-registration">Регистрация</button>
-                    </div>
-                </form>
+    <section class="section section-less-margin admin-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Пользователи</h1>
+                    <table class="table table-hover table-striped admin-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Фамилия Имя</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Дата регистрации</th>
+                                <th scope="col">Дата последнего логина</th>
+                                <th scope="col">Роль</th>
+                                <th scope="col">Блокировка</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
@@ -62,6 +62,8 @@
             </div>
         </div>
     </footer>
+    <script th:src="@{/resources/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/resources/js/registration.js}"></script>
 </body>
 
 </html>
