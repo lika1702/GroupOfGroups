@@ -1,13 +1,74 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>Hello, World!</div>
-        <a th:href="@{/login}">Авторизоваться</a>
-        <a th:href="@{/profile}">Profile</a>
-    </body>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group of Groups</title>
+    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/style_2.css}">
+</head>
+
+<body>
+    <div th:replace="~{template.html::#header}"></div>
+    <section id="main-content">
+        <div class="first-screen">
+            <div class="logo-block">
+                <div class="parallax">
+                    <div class="first-level"></div>
+                    <div class="second-level"></div>
+                    <div class="third-level">
+                        <p>Group<br>of<br>Groups</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-block">
+                <p th:text="#{index.first-screen.text-1}"></p>
+                <div class="social-networks">
+                    <img th:src="@{/resources/img/social-networks/vk.png}" width="100" alt="">
+                    <img th:src="@{/resources/img/social-networks/tg.png}" width="100" alt="">
+                    <img th:src="@{/resources/img/social-networks/fb.png}" width="50" alt="">
+                </div>
+                <p th:text="#{index.first-screen.text-2}"></p>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="container">
+                <h2 th:text="#{index.header}"></h2>
+                <div class="content">
+                    <p th:text="#{index.main-content.text-1}"></p>
+                    <img th:src="@{/resources/img/images/image_1.jpg}" width="500" alt="">
+                    <p th:text="#{index.main-content.text-2}"></p>
+                    <p th:text="#{index.main-content.text-3}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="container">
+                <div class="cards">
+                    <div class="card">
+                        <div style="background: url(../../resources/img/card/card_1.png) center/auto 70% no-repeat;"></div>
+                        <span th:text="#{index.card-1.digit}"></span>
+                        <p th:text="#{index.card-1.text}"></p>
+                    </div>
+                    <div class="card">
+                        <div style="background: url(../../resources/img/card/card_2.png) center/auto 70% no-repeat;"></div>
+                        <span th:text="#{index.card-2.digit}"></span>
+                        <p th:text="#{index.card-2.text}"></p>
+                    </div>
+                    <div class="card">
+                        <div style="background: url(../../resources/img/card/card_3.png) center/auto 70% no-repeat;"></div>
+                        <span th:text="#{index.card-3.digit}"></span>
+                        <p th:text="#{index.card-3.text}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div th:replace="~{template.html::footer}"></div>
+    <script th:src="@{/resources/js/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/resources/js/parallax.js}"></script>
+</body>
+
 </html>

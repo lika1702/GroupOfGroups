@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "Education")
 public class Education extends CommonData {
 
-    @Column(name = "level")
+    @Column(name = "stage")
     private String level;
 
     @Column(name = "university")
