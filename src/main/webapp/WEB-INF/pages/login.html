@@ -26,7 +26,7 @@
             </div>
             <div class="login-form">
                 <h2 th:text="#{login.sign-in.header}"></h2>
-                <form action="@{/login}">
+                <form th:action="@{/login}">
                     <input type="text" placeholder="E-mail" name="username">
                     <input type="text" th:placeholder="#{login.placeholder.password}" name="password">
                     <div class="horizontal-buttons">
