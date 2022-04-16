@@ -1,23 +1,27 @@
 <header id="header" th:fragment="header">
     <nav>
-        <ul class="navigation">
+        <ul class="navigation-menu">
             <li><a th:href="@{/}" th:text="#{header.main-page}"></a></li>
             <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
-            <li><a th:href="@{/}" th:text="#{header.chat}"></a></li>
-            <li><a th:href="@{/login}" th:text="#{header.sign-in}"></a></li>
-            <li>
-                <form action="">
-                    <div class="group">
-                        <input type="text" th:placeholder="#{header.search}">
-                        <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                            </svg></button>
-                    </div>
-                </form>
-            </li>
+            <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
+            <li><a th:href="@{/}" th:text="#{header.cost}"></a></li>
+            <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
         </ul>
     </nav>
 </header>
+
+<div id="menu-block" th:fragment="chat-header">
+        <h2 th:text="#{chat.header}"></h2>
+        <nav class="menu">
+            <ul>
+                <li><a th:href="@{/}" th:text="#{header.main-page}"></a></li>
+                <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
+                <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
+                <li><a th:href="@{/}" th:text="#{header.cost}"></a></li>
+                <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
+            </ul>
+        </nav>
+    </div>
 
 <header class="header admin-header" th:fragment="admin-header">
     <div class="container">
@@ -37,19 +41,17 @@
 </header>
 
 <footer id="footer" th:fragment="footer">
-    <div class="container">
-        <div class="links">
-            <ul class="footer-ref">
-                <li><a th:href="@{/}" th:text="#{footer.main-page}"></a></li>
-                <li><a th:href="@{/}" th:text="#{footer.analytics}">Аналитика</a></li>
-                <li><a th:href="@{/}" th:text="#{footer.chat}">Онлайн-чат</a></li>
-            </ul>
-            <ul class="language-ref">
-                <li><a th:href="@{/?lang=ru}">Русский</a></li>
-                <li><a th:href="@{/?lang=en}">English</a></li>
-                <li><a th:href="@{/?lang=de}">Deutsch</a></li>
-            </ul>
-        </div>
-        <p>Copyright 2022 © Group of Groups</p>
-    </div>
+    <ul class="footer-references">
+        <li><a th:href="@{/}" th:text="#{footer.main-page}"></a></li>
+        <li><a th:href="@{/}" th:text="#{footer.analytics}"></a></li>
+        <li><a th:href="@{/chat}" th:text="#{footer.chat}"></a></li>
+        <li><a th:href="@{/}" th:text="#{footer.news}"></a></li>
+        <li><a th:href="@{/}" th:text="#{footer.cost}"></a></li>
+    </ul>
+    <ul class="languages">
+        <li><a th:href="@{/?lang=ru}">Русский</a></li>
+        <li><a th:href="@{/?lang=en}">English</a></li>
+        <li><a th:href="@{/?lang=de}">Deutsch</a></li>
+    </ul>
+    <p>Copyright 2022 © Group of Groups</p>
 </footer>

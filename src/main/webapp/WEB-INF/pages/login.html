@@ -6,29 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход Group of Groups</title>
     <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
-    <link rel="stylesheet" th:href="@{/resources/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/root.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/common.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/login.css}">
 </head>
 
 <body>
-    <div th:replace="~{template.html::header}"></div>
-    <section class="section d-flex justify-content-center">
-        <div class="col-4 card login-card">
-            <h2 th:text="#{login.sign-in.header}"></h2>
-            <div class="row justify-content-center">
-                <form th:action="@{/login}" method="post" class="col-9">
-                    <input class="form-control" type="text" name="username" placeholder="Email">
-                    <input class="form-control" type="password" name="password" th:placeholder="#{login.placeholder.password}">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-auth btn-login" type="submit" th:text="#{login.sign-in.button}"></button>
-                        <a th:href="@{/registration}" class="btn btn-auth btn-registration" th:text="#{login.sign-up.button}"></a>
-                    </div>
+    <div id="login-container">
+       <div th:replace="~{template.html::#header}"></div>
+        <section>
+            <div class="search-bar">
+                <form action="" method="post">
+                    <input type="text" th:placeholder="#{header.search}">
+                    <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg></button>
                 </form>
-                <a th:href="@{/registration}" class="col-9 hint" th:text="#{login.hint}"></a>
             </div>
-        </div>
-    </section>
-    <div th:replace="~{template.html::footer}"></div>
+            <div class="login-form">
+                <h2 th:text="#{login.sign-in.header}"></h2>
+                <form action="@{/login}">
+                    <input type="text" placeholder="E-mail" name="username">
+                    <input type="text" th:placeholder="#{login.placeholder.password}" name="password">
+                    <div class="horizontal-buttons">
+                        <button th:text="#{login.sign-in.button}"></button>
+                        <a th:href="@{/registration}" th:text="#{login.sign-up.button}"></a>
+                    </div>
+                    <a th:href="@{/}" class="hint" th:text="#{login.hint}"></a>
+                </form>
+            </div>
+        </section>
+    </div>
 </body>
 
 </html>

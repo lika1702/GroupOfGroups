@@ -11,4 +11,9 @@ public class MainController {
     public String homePage(Model model) {
         return "index";
     }
+    
+    @GetMapping(value = "/chat")
+    public String chatPage(Model model) {
+        return "chat";
+    }
 }

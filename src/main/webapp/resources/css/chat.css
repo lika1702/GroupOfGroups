@@ -1,0 +1,184 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+#dialogs-block {
+    width: 30%;
+    height: 100%;
+    padding: 30px;
+    background: url(../img/background/login_bg.jpg) center / cover no-repeat;
+}
+
+#dialogs-block .search-bar form,
+#chat-block .search-bar form,
+#chat-block .sent-messages form {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#dialogs-block .search-bar form input,
+#chat-block .search-bar form input,
+#chat-block .sent-messages form textarea {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 100px;
+    background: var(--white);
+    font: 16px var(--sans-serif);
+    color: var(--black);
+}
+
+#dialogs-block .search-bar form input::placeholder,
+#chat-block .search-bar form input::placeholder,
+#chat-block .sent-messages form textarea::placeholder {
+    font: italic 14px var(--sans-serif);
+    color: var(--gray);
+}
+
+#dialogs-block .search-bar form button,
+#chat-block .search-bar form button,
+#chat-block .sent-messages form button {
+    background: transparent;
+    color: var(--black);
+    position: absolute;
+    right: 20px;
+}
+
+#dialogs-block .dialog-list {
+    width: 100%;
+    height: 90%;
+    margin-top: 40px;
+    padding-top: 10px;
+    overflow-y: scroll;
+}
+
+#dialogs-block .dialog-list li {
+    width: calc(100% - 10px);
+    height: 120px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+    background: var(--blue);
+    position: relative;
+}
+
+#dialogs-block .dialog-list li::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    background: var(--white);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+#dialogs-block .dialog-list li a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dialogs-block .dialog-list li a .photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+}
+
+#dialogs-block .dialog-list li a .dialog-descryption {
+    width: calc(100% - 100px);
+    height: 80px;
+}
+
+#dialogs-block .dialog-list li a .dialog-descryption h3 {
+    font: bold 16px var(--sans-serif);
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+#dialogs-block .dialog-list li a .dialog-descryption p {
+    font: 12px var(--sans-serif);
+    color: var(--white);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+#chat-block {
+    width: 50%;
+    height: 100%;
+    padding: 30px;
+    background-color: antiquewhite;
+}
+
+#chat-block .sent-messages form {
+    align-items: flex-start;
+}
+
+#chat-block .sent-messages form textarea {
+    height: 100px;
+    border-radius: 3px;
+    padding: 20px 30px 20px 20px;
+    resize: none;
+}
+
+#chat-block .sent-messages form button {
+    top: 20px;
+}
+
+#chat-block .messages-area {
+    width: 100%;
+    height: calc(100% - 200px);
+    margin: 30px 0;
+    overflow-y: scroll;
+}
+
+#chat-block .messages-area .message-cloud {
+    width: 80%;
+    height: auto;
+    padding: 20px;
+    border-radius: 40px;
+    background: var(--light-blue);
+    border: 2px solid var(--blue);
+}
+
+#chat-block .messages-area .message {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+#chat-block .messages-area .message.sent {
+    justify-content: flex-end;
+}
+#chat-block .messages-area .message.recieved {
+    justify-content: flex-start;
+}
+
+#chat-block .messages-area .message-cloud p {
+    font: 14px var(--sans-serif);
+    color: var(--black);
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+#chat-block .messages-area .sent-message {
+    border-bottom-right-radius: 0;
+}
+#chat-block .messages-area .recieved-message {
+    border-bottom-left-radius: 0;
+}
+
+#chat-block .messages-area .message-cloud span {
+    font: 12px var(--sans-serif);
+    color: var(--gray);
+}

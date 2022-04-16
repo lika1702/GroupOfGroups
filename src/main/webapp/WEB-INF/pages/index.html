@@ -7,65 +7,130 @@
     <title>Group of Groups</title>
     <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
     <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
-    <link rel="stylesheet" th:href="@{/resources/css/style_2.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/root.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/common.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/index.css}">
 </head>
 
 <body>
-    <div th:replace="~{template.html::#header}"></div>
-    <section id="main-content">
-        <div class="first-screen">
-            <div class="logo-block">
-                <div class="parallax">
-                    <div class="first-level"></div>
-                    <div class="second-level"></div>
-                    <div class="third-level">
-                        <p>Group<br>of<br>Groups</p>
-                    </div>
+    <section id="first-screen">
+        <div id="logo-block" class="block">
+            <div class="logo">
+                <div class="logo-text">
+                    <img th:src="@{/resources/img/logo/logo_md.png}" alt="" class="logo-img">
+                    <h1>Group<br>of<br>Groups</h1>
                 </div>
             </div>
-            <div class="text-block">
-                <p th:text="#{index.first-screen.text-1}"></p>
-                <div class="social-networks">
-                    <img th:src="@{/resources/img/social-networks/vk.png}" width="100" alt="">
-                    <img th:src="@{/resources/img/social-networks/tg.png}" width="100" alt="">
-                    <img th:src="@{/resources/img/social-networks/fb.png}" width="50" alt="">
+            <form action="">
+                <input type="text" th:placeholder="#{header.search}">
+                <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg></button>
+            </form>
+            <div class="menu-bottom">
+                <ul>
+                    <li><a th:href="@{/}" th:text="#{header.main-page}"></a></li>
+                    <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
+                    <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="content-block" class="block">
+            <div class="menu-top">
+                <ul>
+                    <li><a th:href="@{/}" th:text="#{header.news}">Новости</a></li>
+                    <li><a th:href="@{/}" th:text="#{header.cost}">Тарифы</a></li>
+                </ul>
+                <div class="horizontal-buttons">
+                    <a th:href="@{/login}" th:text="#{header.sign-in}"></a>
+                    <a th:href="@{/registration}" th:text="#{header.sign-up}"></a>
                 </div>
+            </div>
+            <div class="text">
+                <p th:text="#{index.first-screen.text-1}"></p>
+                <p class="social-networks">
+                    <img th:src="@{/resources/img/icons/icon-tg.png}" height="70" alt="">
+                    <img th:src="@{/resources/img/icons/icon-fb.png}" height="90" alt="">
+                    <img th:src="@{/resources/img/icons/icon-vk.png}" width="100" alt="">
+                </p>
                 <p th:text="#{index.first-screen.text-2}"></p>
             </div>
+            <p th:text="#{index.first-screen.text-3}"></p>
         </div>
-        <div class="main-content">
-            <div class="container">
-                <h2 th:text="#{index.header}"></h2>
-                <div class="content">
-                    <p th:text="#{index.main-content.text-1}"></p>
-                    <img th:src="@{/resources/img/images/image_1.jpg}" width="500" alt="">
-                    <p th:text="#{index.main-content.text-2}"></p>
-                    <p th:text="#{index.main-content.text-3}"></p>
-                </div>
+    </section>
+
+    <section id="combine-messenger">
+        <div id="header-block">
+            <h2 th:text="#{index.header}"></h2>
+        </div>
+        <div id="text-block">
+            <div>
+                <p th:text="#{index.main-content.text-1}"></p>
             </div>
-        </div>
-        <div class="card-section">
-            <div class="container">
-                <div class="cards">
-                    <div class="card">
-                        <div style="background: url(../../resources/img/card/card_1.png) center/auto 70% no-repeat;"></div>
-                        <span th:text="#{index.card-1.digit}"></span>
-                        <p th:text="#{index.card-1.text}"></p>
-                    </div>
-                    <div class="card">
-                        <div style="background: url(../../resources/img/card/card_2.png) center/auto 70% no-repeat;"></div>
-                        <span th:text="#{index.card-2.digit}"></span>
-                        <p th:text="#{index.card-2.text}"></p>
-                    </div>
-                    <div class="card">
-                        <div style="background: url(../../resources/img/card/card_3.png) center/auto 70% no-repeat;"></div>
-                        <span th:text="#{index.card-3.digit}"></span>
-                        <p th:text="#{index.card-3.text}"></p>
-                    </div>
-                </div>
+            <div>
+                <p th:text="#{index.main-content.text-2}"></p>
             </div>
         </div>
     </section>
+
+    <section id="card-block">
+        <div class="card">
+            <div class="photo"><img th:src="@{/resources/img/icons/user.png}" alt=""></div>
+            <div class="card-descryption">
+                <span th:text="#{index.card-1.digit}"></span>
+                <p th:text="#{index.card-1.text}"></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="photo"><img th:src="@{/resources/img/icons/message.png}" alt=""></div>
+            <div class="card-descryption">
+                <span th:text="#{index.card-2.digit}"></span>
+                <p th:text="#{index.card-2.text}"></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="photo"><img th:src="@{/resources/img/icons/project.png}" alt=""></div>
+            <div class="card-descryption">
+                <span th:text="#{index.card-3.digit}"></span>
+                <p th:text="#{index.card-3.text}"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="question">
+        <div class="benefits">
+            <div class="benefit">
+                <h3 th:text="#{index.benefit-1.header}"></h3>
+                <p th:text="#{index.benefit-1.text}"></p>
+            </div>
+            <div class="benefit">
+                <h3 th:text="#{index.benefit-2.header}"></h3>
+                <p th:text="#{index.benefit-2.text}"></p>
+            </div>
+        </div>
+        <div id="middle-part">
+            <h2 th:text="#{index.benefits.header}"></h2>
+        </div>
+        <div class="benefits">
+            <div class="benefit">
+                <h3 th:text="#{index.benefit-3.header}"></h3>
+                <p th:text="#{index.benefit-3.text}"></p>
+            </div>
+            <div class="benefit">
+                <h3 th:text="#{index.benefit-4.header}"></h3>
+                <p th:text="#{index.benefit-4.text}"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="support">
+        <h2 th:text="#{index.support.header}"></h2>
+        <p th:text="#{index.support.text}"></p>
+        <p><a href="tel:+375333619593" th:text="#{index.support.phone-1}"></a></p>
+        <p><a href="tel:+375295950817" th:text="#{index.support.phone-2}"></a></p>
+        <p><a href="mailto: Rintarou-san@yandex.by" th:text="#{index.support.email}"></a></p>
+    </section>
+
     <div th:replace="~{template.html::footer}"></div>
     <script th:src="@{/resources/js/jquery-3.6.0.min.js}"></script>
     <script th:src="@{/resources/js/parallax.js}"></script>

@@ -1,0 +1,102 @@
+body {
+    background: var(--body-color);
+}
+
+#menu-block {
+    width: 20%;
+    height: 100%;
+    padding: 30px;
+    background: url(../img/background/login_bg.jpg) center / cover no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#menu-block h2 {
+    font: bold 45px var(--sans-serif);
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#menu-block .menu {
+
+}
+
+#menu-block .menu ul li {
+    height: 40px;
+    margin-bottom: 50px;
+    border-radius: 100px;
+    border: 2px solid var(--white);
+    box-shadow: 0 5px 0 var(--white);
+    transition: all .2s linear;
+}
+
+#menu-block .menu ul li:hover {
+    border-color: var(--orange);
+    box-shadow: 0 5px 0 var(--dark-orange);
+}
+
+#menu-block .menu ul li:active {
+    transform: translateY(3px);
+    box-shadow: 0 -2px 0 var(--dark-orange);
+}
+
+#menu-block .menu ul li a {
+    width: 100%;
+    height: 100%;
+    font: 16px var(--sans-serif);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu-block .menu ul li:hover a {
+    color: var(--orange);
+}
+
+#footer {
+    width: 100%;
+    padding: 30px;
+    background: var(--black);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    z-index: 3;
+}
+
+#footer .footer-references {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#footer .languages {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: underline;
+}
+
+#footer .footer-references li a,
+#footer .languages li a {
+    font: 16px var(--sans-serif);
+    color: var(--white);
+    transition: all .2s linear;
+}
+
+#footer .footer-references li a:hover {
+    color: var(--blue);
+}
+#footer .languages li a:hover {
+    color: var(--orange);
+}
+
+#footer p {
+    width: 100%;
+    margin-top: 50px;
+    font: 14px var(--sans-serif);
+    color: var(--white);
+    text-align: center;
+}

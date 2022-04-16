@@ -1,0 +1,192 @@
+#login-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#login-container header {
+    width: 25%;
+    height: 100vh;
+    background: transparent;
+}
+
+#login-container header nav {
+    width: 25%;
+    height: 100%;
+    padding-bottom: 15px;
+    position: fixed;
+}
+
+#login-container .navigation-menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#login-container .navigation-menu li {
+    width: 80%;
+    height: 100px;
+    border: 2px solid var(--blue);
+    background: var(--light-blue);
+    box-shadow: 15px 15px 0 var(--blue);
+    transition: all .3s ease-out;
+
+}
+
+#login-container .navigation-menu li:hover {
+    transform: translateX(30px);
+    border-color: var(--orange);
+    background: var(--light-orange);
+    box-shadow: 15px 15px 0 var(--orange);
+}
+
+#login-container .navigation-menu li:hover a {
+    color: var(--orange);
+}
+
+#login-container .navigation-menu li a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: bold 18px var(--sans-serif);
+    color: var(--black);
+}
+
+#login-container section {
+    width: 75%;
+    height: 100vh;
+    background: url(../img/background/login_bg.jpg) center /cover no-repeat;
+}
+
+#login-container section .search-bar {
+    width: 100%;
+    height: 15%;
+    padding: 0 30px;
+}
+
+#login-container .search-bar form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+#login-container input {
+    width: 40%;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 100px;
+    font: 16px var(--sans-serif);
+    color: var(--black);
+}
+
+#login-container input::placeholder {
+    font: italic 14px var(--sans-serif);
+    color: var(--gray);
+}
+
+#login-container .search-bar button {
+    background: transparent;
+    position: absolute;
+    right: 20px;
+}
+
+#login-container section .login-form h2 {
+    font: bold 35px var(--sans-serif);
+    color: var(--white);
+    margin: -50px 0 100px;
+}
+
+#login-container section .login-form {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-container .login-form form {
+    width: 100%;
+    height: auto;
+    margin-top: -50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-container .login-form input {
+    margin-bottom: 30px;
+}
+
+#login-container .login-form button,
+#login-container .login-form .horizontal-buttons a {
+    height: 40px;
+    padding: 0 30px;
+    border-radius: 100px;
+    border: 2px solid var(--blue);
+    background: var(--blue);
+    box-shadow: 0 5px 1px var(--dark-blue);
+    font: 20px var(--sans-serif);
+    color: var(--white);
+    transition: all .3s ease-out;
+}
+
+#login-container .login-form button:hover {
+    background: var(--orange);
+}
+
+#login-container .login-form button:hover,
+#login-container .login-form .horizontal-buttons a:hover {
+    border-color: var(--orange);
+    box-shadow: 0 5px 1px var(--dark-orange);
+}
+
+#login-container .login-form button:active,
+#login-container .login-form .horizontal-buttons a:active {
+    transform: translateY(3px);
+    box-shadow: 0 -2px var(--dark-orange);
+    border-color: var(--dark-orange);
+}
+
+#login-container .login-form .horizontal-buttons a {
+    background: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.horizontal-buttons {
+    width: 40%;
+    margin: 10px 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#login-container .login-form a.hint {
+    width: 40%;
+    display: block;
+    font: italic 14px var(--sans-serif);
+    color: var(--white);
+    transition: all .3s linear;
+    margin-bottom: 30px;
+}
+
+#login-container .login-form a.hint:hover {
+    text-decoration: underline;
+    color: var(--orange);
+}
+
+#login-container .fio {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#login-container .fio input {
+    width: 49%;
+}

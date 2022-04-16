@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sriracha&display=swap');
+
+:root {
+    --sans-serif: 'Montserrat', sans-serif;
+    --artistiс: 'Sriracha', cursive;
+    
+    --body-color: #fcfcfc;
+    
+    --white: #fff;
+    --gray: #898989;
+    --black: #27282a;
+    
+    --light-orange: #fff0de;
+    --light-blue: #ccf0ea;
+    --light-gray: #ededed;
+    
+    --orange: #f99722;
+    --blue: #1db69c;
+    
+    --dark-orange: #ab630c;
+    --dark-blue: #077563;
+    
+    --opacity-orange: #f9972200;
+    --opacity-blue: #1db69c00;
+}
+
+*::-webkit-scrollbar {
+    width: 0;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--gray);
+}
