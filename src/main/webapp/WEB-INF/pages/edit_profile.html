@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group of Groups</title>
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/root.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/common.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/profile.css}">
+</head>
+
+<body>
+    <div th:replace="~{template.html::chat-header}"></div>
+    <div id="profile-block">
+        <form th:action="@{/settings/confirm}" method="post" class="edit-form" th:object="${user}">
+            <input type="hidden" th:value="${user.id}" name="id">
+            <input type="hidden" th:value="${user.email}" name="email">
+            <h1 th:text="#{edit.header}"></h1>
+            <table>
+                <tr>
+                    <th colspan="2" th:text="#{edit.form.fieldset-1}"></th>
+                </tr>
+                <tr>
+                    <td class="header-text" th:text="#{edit.form.header-1}"></td>
+                    <td><input type="text" name="profile.surname" th:value="${user.profile.surname}"></td>
+                </tr>
+                <tr>
+                    <td class="header-text" th:text="#{edit.form.header-2}"></td>
+                    <td><input type="text" name="profile.name" th:value="${user.profile.name}"></td>
+                </tr>
+                <tr>
+                    <td class="header-text" th:text="#{edit.form.header-3}"></td>
+                    <td>
+                        <input th:if="${user.profile.dateOfBirth}" type="date" name="profile.dateOfBirth" th:value="${user.profile.dateOfBirth.toString().substring(0, 10)}">
+                        <input th:unless="${user.profile.dateOfBirth}" type="date" name="profile.dateOfBirth">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="header-text" th:text="#{edit.form.header-4}"></td>
+                    <td><input type="text" name="profile.phone" th:value="${user.profile.phone}"></td>
+                </tr>
+                <tr>
+                    <td class="header-text" th:text="#{edit.form.header-5}"></td>
+                    <td>
+                        <select name="profile.hometown" id="user.profile.hometown">
+                            <th:block th:each="city:${cities}">
+                                <option th:if="${user.profile.hometown==city}" th:value="${city.id}" th:text="${city.name}" selected></option>
+                                <option th:if="${user.profile.hometown!=city}" th:value="${city.id}" th:text="${city.name}"></option>
+                            </th:block>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2" th:text="#{edit.form.fieldset-2}"></th>
+                </tr>
+                <tr>
+                    <td class="header-text" th:text="#{edit.form.header-6}"></td>
+                    <td>
+                        <select name="profile.education" id="user.profile.education">
+                            <option th:if="${user.profile.education}" th:value="${user.profile.education.id}" th:text="${user.profile.education.name}" selected></option>
+                            <option th:unless="${user.profile.education}" value="" th:text="#{edit.form.hint}" selected hidden></option>
+                            <th:block th:each="university:${universities}">
+                                <option th:value="${university.id}" th:text="${university.name} + ' (' + ${university.shortName} + ')'"></option>
+                            </th:block>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" th:text="#{edit.form.header-7}" class="header-text"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="language-list">
+                        <ul id="list-of-lang">
+                            <th:block th:each="lang:${user.profile.languages}">
+                                <li id="learned-lang">
+                                    <label for="">
+                                        <input type="checkbox" name="profile.languages" th:value="${lang.id}" checked><span th:text="${lang.name}"></span></label>
+                                </li>
+                            </th:block>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <select id="choice-lang">
+                            <option value="" th:text="#{edit.form.hint}" hidden></option>
+                            <th:block th:each="lang:${languages}">
+                                <option th:value="${lang.id}" th:text="${lang.name}"></option>
+                            </th:block>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2" th:text="#{edit.form.fieldset-3}"></th>
+                </tr>
+                <tr>
+                    <td colspan="2" class="header-text" th:text="#{edit.form.header-8}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea name="profile.autobiography" id="" th:text="${user.profile.autobiography}"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="header-text" th:text="#{edit.form.header-9}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="labels">
+                            <th:block th:each="interest:${interests}">
+                                <label th:for="${interest.id}">
+                                    <input th:if="${#arrays.contains(user.profile.interests, interest)}" type="checkbox" th:id="${interest.id}" th:name="profile.interests" th:value="${interest.id}" checked>
+                                    <input th:unless="${#arrays.contains(user.profile.interests, interest)}" type="checkbox" th:id="${interest.id}" th:name="profile.interests" th:value="${interest.id}"><span th:text="${interest.name}"></span></label>
+                            </th:block>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button>Сохранить</button>
+        </form>
+    </div>
+    <div th:replace="~{template.html::footer}"></div>
+    <script th:src="@{/resources/js/new-lang.js}"></script>
+</body>
+
+</html>

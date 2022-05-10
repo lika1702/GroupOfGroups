@@ -99,12 +99,12 @@
 #login-container section .login-form h2 {
     font: bold 35px var(--sans-serif);
     color: var(--white);
-    margin: -50px 0 100px;
+    margin-bottom: 30px;
 }
 
 #login-container section .login-form {
     width: 100%;
-    height: 85%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -114,7 +114,6 @@
 #login-container .login-form form {
     width: 100%;
     height: auto;
-    margin-top: -50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,6 +178,24 @@
 #login-container .login-form a.hint:hover {
     text-decoration: underline;
     color: var(--orange);
+}
+#login-container .message {
+    width: 40%;
+    height: auto;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+}
+#login-container .message p {
+    text-align: center;
+    font: italic 14px var(--sans-serif);
+    color: var(--gray);
+}
+#login-container .message.error-message {
+    background: var(--light-red);
+}
+#login-container .message.success-message {
+    background: var(--light-green);
 }
 
 #login-container .fio {

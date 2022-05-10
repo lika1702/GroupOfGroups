@@ -215,6 +215,7 @@
 }
 
 #combine-messenger #header-block h2 {
+    width: 50%;
     margin: 0 0 50px 100px;
     font: bold 45px var(--sans-serif);
     color: var(--white);
@@ -325,9 +326,12 @@
     padding: 30px;
     background: var(--black);
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 #question #middle-part h2 {
+    width: 50%;
     font: bold 45px var(--sans-serif);
     color: var(--white);
     text-align: center;

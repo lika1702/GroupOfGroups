@@ -1,9 +1,13 @@
 package course.groupofgroups.config;
 
+import course.groupofgroups.converter.StringToDate;
+import course.groupofgroups.converter.StringToInterestsList;
+import course.groupofgroups.converter.StringToLanguagesList;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -74,4 +78,12 @@ public class WebConfiguration implements WebMvcConfigurer {
         SessionLocaleResolver resolver = new SessionLocaleResolver();
         return resolver;
     }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new StringToDate());
+        registry.addConverter(new StringToInterestsList());
+        registry.addConverter(new StringToLanguagesList());
+    }
+    
 }

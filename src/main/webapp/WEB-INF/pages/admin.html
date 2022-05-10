@@ -5,51 +5,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход Group of Groups</title>
-    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
-    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../resources/css/style.css">
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/root.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/common.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/admin.css}">
 </head>
 
 <body>
     <div th:replace="~{template.html::admin-header}"></div>
     <section class="section section-less-margin admin-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 th:text="#{admin.title}"></h1>
-                    <table class="table table-hover table-striped admin-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col" th:text="#{admin.fio}"></th>
-                                <th scope="col">Email</th>
-                                <th scope="col" th:text="#{admin.date-of-registration}"></th>
-                                <th scope="col" th:text="#{admin.date-of-last-login}"></th>
-                                <th scope="col" th:text="#{admin.role}"></th>
-                                <th scope="col" th:text="#{admin.block}"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <th:block>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </th:block>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <h1 th:text="#{admin.title}"></h1>
+        <div class="btns">
+            <ul class="filter">
+                <li><a th:href="@{/admin/}">Все</a></li>
+                <li><a th:href="@{/admin/?filt=block}">Блокированные</a></li>
+                <li><a th:href="@{/admin/?filt=unblock}">Неблокированные</a></li>
+                <li><a th:href="@{/admin/?filt=admin}">Администраторы</a></li>
+                <li><a th:href="@{/admin/?filt=user}">Пользователи</a></li>
+            </ul>
         </div>
+        <table class="table table-hover table-striped admin-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" th:text="#{admin.fio}"></th>
+                    <th scope="col">Email</th>
+                    <th scope="col" th:text="#{admin.date-of-registration}"></th>
+                    <th scope="col" th:text="#{admin.date-of-last-login}"></th>
+                    <th scope="col" th:text="#{admin.role}"></th>
+                    <th scope="col" th:text="#{admin.block}"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="user:${users}">
+                    <tr>
+                        <form th:action="@{/admin/users/save}" th:object="${user}" method="post">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.profile.surname}+' '+${user.profile.name}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.dateOfRegistration}"></td>
+                            <td th:text="${user.lastLogin}"></td>
+                            <td>
+                                <select name="role">
+                                    <th:block th:if="${user.role}=='ADMIN'">
+                                        <option value="ADMIN" selected>Admin</option>
+                                        <option value="USER">User</option>
+                                    </th:block>
+                                    <th:block th:if="${user.role}=='USER'">
+                                        <option value="ADMIN">Admin</option>
+                                        <option value="USER" selected>User</option>
+                                    </th:block>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="block" th:checked="${user.block}">
+                            </td>
+                            <td class="save-btn">
+                                <input type="hidden" th:value="${user.id}" name="id">
+                                <button id="save-btn">Save</button>
+                            </td>
+                            <td class="del-btn">
+                                <a th:href="@{'/admin/users/delete/'+${user.id}}">Del</a>
+                            </td>
+                        </form>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
     </section>
     <div th:replace="~{template.html::footer}"></div>
     <script th:src="@{/resources/js/jquery-3.6.0.min.js}"></script>
-    <script th:src="@{/resources/js/registration.js}"></script>
+    <script th:src="@{/resources/js/admin.js}"></script>
 </body>
 
 </html>

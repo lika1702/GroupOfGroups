@@ -31,10 +31,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/chat").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/**").permitAll()
                 .and()
-                .formLogin().loginPage("/login").failureUrl("/?error")
-                .and().logout().logoutSuccessUrl("/?logout").permitAll();
+                .formLogin().loginPage("/login").failureUrl("/login?error=true")
+                .and().logout().logoutSuccessUrl("/login?logout").permitAll()
+                .and().exceptionHandling().accessDeniedPage("/403");
     }
 
 }

@@ -32,4 +32,8 @@ public class Dialog extends CommonData {
 
     @OneToMany(mappedBy = "dialog")
     private List<Message> messages;
+
+    public void addMessage(Message message) {
+        this.messages.add(message);
+    }
 }

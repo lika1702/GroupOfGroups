@@ -4,40 +4,34 @@
             <li><a th:href="@{/}" th:text="#{header.main-page}"></a></li>
             <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
             <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
-            <li><a th:href="@{/}" th:text="#{header.cost}"></a></li>
+            <li><a th:href="@{/users}" th:text="#{header.user}"></a></li>
             <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
         </ul>
     </nav>
 </header>
 
 <div id="menu-block" th:fragment="chat-header">
-        <h2 th:text="#{chat.header}"></h2>
-        <nav class="menu">
-            <ul>
-                <li><a th:href="@{/}" th:text="#{header.main-page}"></a></li>
-                <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
-                <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
-                <li><a th:href="@{/}" th:text="#{header.cost}"></a></li>
-                <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
-            </ul>
-        </nav>
-    </div>
+    <h2 th:text="#{chat.header}"></h2>
+    <nav class="menu">
+        <ul>
+            <li><a th:href="@{/}" th:text="#{header.main-page}"></a></li>
+            <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
+            <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
+            <li><a th:href="@{/users}" th:text="#{header.user}"></a></li>
+            <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
+        </ul>
+    </nav>
+</div>
 
 <header class="header admin-header" th:fragment="admin-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <ul class="admin-menu">
-                    <li>
-                        <a th:href="@{/}"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                                </svg></span></a>
-                        <a th:href="@{/}" th:text="#{header.admin.main-page}"></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <ul class="admin-menu">
+        <li>
+            <a th:href="@{/}"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                    </svg></span></a>
+            <a th:href="@{/}" th:text="#{header.admin.main-page}"></a>
+        </li>
+    </ul>
 </header>
 
 <footer id="footer" th:fragment="footer">
@@ -46,7 +40,7 @@
         <li><a th:href="@{/}" th:text="#{footer.analytics}"></a></li>
         <li><a th:href="@{/chat}" th:text="#{footer.chat}"></a></li>
         <li><a th:href="@{/}" th:text="#{footer.news}"></a></li>
-        <li><a th:href="@{/}" th:text="#{footer.cost}"></a></li>
+        <li><a th:href="@{/users}" th:text="#{footer.user}"></a></li>
     </ul>
     <ul class="languages">
         <li><a th:href="@{/?lang=ru}">Русский</a></li>

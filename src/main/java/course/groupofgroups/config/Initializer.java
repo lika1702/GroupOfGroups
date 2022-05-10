@@ -9,7 +9,9 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
         return new Class[]{
             WebConfiguration.class,
             HibernateConfiguration.class,
-            SecurityConfiguration.class
+            SecurityConfiguration.class,
+            CloudinaryConfiguration.class,
+            SocialConfiguration.class
         };
     }
 

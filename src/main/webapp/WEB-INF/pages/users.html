@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя страница Group of Groups</title>
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/root.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/common.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/profile.css}">
+</head>
+
+<body>
+    <div th:replace="~{template.html::chat-header}"></div>
+    <div id="profile-block">
+        <table id="users-table">
+            <th:block th:each="user:${users}">
+                <tr>
+                    <td>
+                        <div class="photo">
+                            <img th:if="${user.profile.photo}" th:src="${user.profile.photo}" alt="">
+                            <img th:unless="${user.profile.photo}" th:src="@{/resources/img/default.png}" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <h2><a th:href="@{'/profile/' + ${user.email}}" th:text="${user.profile.surname}+ ' ' + ${user.profile.name}"></a></h2>
+                            <p th:text="${user.email}"></p>
+                        </div>
+                        <a th:href="@{'/chat/add/'+${user.email}}" class="write-message"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                            </svg><span th:text="#{users.write-message}"></span></a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+    <div th:replace="~{template.html::footer}"></div>
+</body>
+
+</html>

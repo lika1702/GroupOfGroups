@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход Group of Groups</title>
-    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
     <link rel="stylesheet" th:href="@{resources/css/reset.css}">
     <link rel="stylesheet" th:href="@{resources/css/root.css}">
     <link rel="stylesheet" th:href="@{resources/css/common.css}">
@@ -26,15 +26,18 @@
             </div>
             <div class="login-form">
                 <h2 th:text="#{registration.header}"></h2>
-                <form action="">
+                <div th:if="${param.message != null}" class="message error-message">
+                    <p th:text="#{registration.message}"></p>
+                </div>
+                <form th:action="@{/registration}" method="post" th:object="${user}">
                     <div class="fio">
-                        <input type="text" th:placeholder="#{registration.placeholder.surname}">
-                        <input type="text" th:placeholder="#{registration.placeholder.name}">
+                        <input type="text" th:placeholder="#{registration.placeholder.surname}" name="profile.surname">
+                        <input type="text" th:placeholder="#{registration.placeholder.name}" name="profile.name">
                     </div>
-                    <input type="e-mail" placeholder="E-mail">
-                    <input type="tel" th:placeholder="#{registration.placeholder.phone}">
+                    <input type="e-mail" placeholder="E-mail" name="email">
+                    <input type="tel" th:placeholder="#{registration.placeholder.phone}" name="profile.phone">
                     <br><br>
-                    <input type="password" th:placeholder="#{registration.placeholder.password}">
+                    <input type="password" th:placeholder="#{registration.placeholder.password}" name="password">
                     <input type="password" th:placeholder="#{registration.placeholder.repeat-password}">
                     <a href="" class="hint" th:text="#{registration.hint}"></a>
                     <button th:text="#{registration.sign-up.button}"></button>

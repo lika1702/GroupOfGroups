@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group of Groups</title>
-    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
     <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
     <link rel="stylesheet" th:href="@{/resources/css/root.css}">
     <link rel="stylesheet" th:href="@{/resources/css/common.css}">
@@ -15,54 +15,42 @@
 <body>
     <div th:replace="~{template.html::chat-header}"></div>
     <div id="chat-block">
-        <div class="search-bar">
-            <form action="">
-                <input type="text" th:placeholder="#{chat.search-message}">
-                <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                    </svg></button>
-            </form>
-        </div>
-        <div class="messages-area">
-            <div class="message sent">
-                <div class="message-cloud sent-message">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique distinctio, repellendus nobis sapiente totam consequatur aperiam aspernatur esse quam nulla!</p>
-                    <span class="date">13.04.2022 09:55</span>
-                </div>
+        <th:block th:if="${openDialog}">
+            <div class="search-bar">
+                <form action="">
+                    <input type="text" th:placeholder="#{chat.search-message}">
+                    <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg></button>
+                </form>
             </div>
-            <div class="message recieved">
-                <div class="message-cloud recieved-message">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae minus omnis commodi iste id eum cum deleniti quibusdam eligendi eveniet.</p>
-                    <span class="date">13.04.2022 09:55</span>
+            <div class="messages-area">
+                <th:block th:if="${openDialog.messages}" th:each="message:${openDialog.messages}">
+                    <div th:if="${message.user.email}==${#authentication.name}" class="message sent">
+                    <div class="message-cloud sent-message">
+                        <p th:text="${message.text}"></p>
+                        <span th:text="${message.date}" class="date"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="message recieved">
-                <div class="message-cloud recieved-message">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, impedit officiis eveniet illum obcaecati similique dolores cupiditate, eos reiciendis id velit aspernatur consequatur necessitatibus. Doloribus ducimus facilis iure quisquam quaerat, quo reprehenderit error voluptates corrupti, deserunt asperiores non ex harum minima libero explicabo voluptatibus dolore consequatur vitae. Nihil omnis ab ullam magnam enim ea rem impedit nulla voluptatibus, id vel tempora sapiente suscipit deleniti neque laboriosam pariatur ut nesciunt harum, laudantium autem tempore culpa quam. Voluptate asperiores laudantium repellat assumenda enim omnis esse, quisquam ex</p>
-                    <span class="date">13.04.2022 09:55</span>
+                <div th:unless="${message.user.email}==${#authentication.name}" class="message recieved">
+                    <div class="message-cloud recieved-message">
+                        <p th:text="${message.text}"></p>
+                        <span th:text="${message.date}" class="date"></span>
+                    </div>
                 </div>
+               </th:block>
+                <p th:unless="${openDialog.messages}">Сообщений пока нет</p>
             </div>
-            <div class="message sent">
-                <div class="message-cloud sent-message">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique distinctio, repellendus nobis sapiente totam consequatur aperiam aspernatur esse quam nulla!</p>
-                    <span class="date">13.04.2022 09:55</span>
-                </div>
+            <div class="sent-messages">
+                <form th:action="@{'/sent/'+${openDialog.id}}" method="post" th:object="${newMessage}">
+                    <textarea name="text" th:placeholder="#{chat.type-message}"></textarea>
+                    <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                        </svg></button>
+                </form>
             </div>
-            <div class="message sent">
-                <div class="message-cloud sent-message">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique distinctio, repellendus nobis sapiente totam consequatur aperiam aspernatur esse quam nulla!</p>
-                    <span class="date">13.04.2022 09:55</span>
-                </div>
-            </div>
-        </div>
-        <div class="sent-messages">
-            <form action="">
-                <textarea name="message" th:placeholder="#{chat.type-message}"></textarea>
-                <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
-                    </svg></button>
-            </form>
-        </div>
+        </th:block>
+        <p th:unless="${openDialog}">Выберите кому хотели бы написать</p>
     </div>
     <div id="dialogs-block">
         <div class="search-bar">
@@ -74,33 +62,28 @@
             </form>
         </div>
         <ul class="dialog-list">
-            <li>
-                <a href="">
-                    <div class="photo"></div>
-                    <div class="dialog-descryption">
-                        <h3>Lorem ipsum</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus nam tenetur pariatur, libero perferendis cum consequatur laboriosam nulla modi.</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <div class="photo"></div>
-                    <div class="dialog-descryption">
-                        <h3>Lorem ipsum</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus nam tenetur pariatur, libero perferendis cum consequatur laboriosam nulla modi.</p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <div class="photo"></div>
-                    <div class="dialog-descryption">
-                        <h3>Lorem ipsum</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos voluptatibus nam tenetur pariatur, libero perferendis cum consequatur laboriosam nulla modi.</p>
-                    </div>
-                </a>
-            </li>
+            <th:block th:each="existDialog:${existUser.dialogs}">
+                <li>
+                   <a th:if="${existDialog.users[1].email}==${#authentication.name}" th:href="@{'/chat/with/'+${existDialog.users[0].id}}">
+                        <div class="photo">
+                            <img th:src="${existDialog.art}" alt="">
+                        </div>
+                        <div class="dialog-descryption">
+                            <h3 th:text="${existDialog.name}">title</h3>
+                            <p>Выберите, чтобы написать</p>
+                        </div>
+                    </a>
+                    <a th:if="${existDialog.users[1].email}!=${#authentication.name}" th:href="@{'/chat/with/'+${existDialog.users[1].id}}">
+                        <div class="photo">
+                            <img th:src="${existDialog.art}" alt="">
+                        </div>
+                        <div class="dialog-descryption">
+                            <h3 th:text="${existDialog.name}">title</h3>
+                            <p>Выберите, чтобы написать</p>
+                        </div>
+                    </a>
+                </li>
+            </th:block>
         </ul>
     </div>
     <div th:replace="~{template.html::footer}"></div>

@@ -1,0 +1,83 @@
+.admin-menu {
+    padding: 50px;
+    background: var(--light-gray);
+}
+
+.admin-menu {
+    font: 20px var(--sans-serif);
+    color: var(--black);
+}
+
+section {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background: var(--light-gray);
+}
+
+h1 {
+    font: bold 35px var(--sans-serif);
+    color: var(--black);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 50px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--black);
+    font: 16px var(--sans-serif);
+    text-align: left;
+}
+
+table thead th {
+    font: normal 16px var(--sans-serif);
+    padding: 20px 30px;
+    background: var(--black);
+    color: var(--blue);
+}
+
+table tr td {
+    padding: 20px 30px;
+}
+
+table tr:nth-child(odd) td {
+    background: #f7f7f7;
+}
+
+select {
+    background: transparent;
+    font: normal 16px var(--sans-serif);
+    color: var(--black);
+}
+
+.del-btn a,
+.save-btn button {
+    padding: 5px 15px;
+    border: 1px solid var(--blue);
+    background: transparent;
+}
+
+.save-btn button {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.filter {
+    padding: 0 30px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.filter li a {
+    width: 250px;
+    display: block;
+    padding: 5px 15px;
+    font: 16px var(--sans-serif);
+    color: var(--white);
+    border: 1px solid var(--blue);
+    background: var(--blue);
+    text-align: center;
+}

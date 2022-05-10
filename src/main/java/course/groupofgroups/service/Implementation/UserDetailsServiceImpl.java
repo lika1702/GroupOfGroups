@@ -19,9 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserProfile user = repository.findByEmail(username);
-        System.out.println("Finding user:");
         if (user == null) {
-            System.out.println("Unknown user:");
             throw new UsernameNotFoundException("Unknown user: " + username);
         }
         repository.setLastLoginById(new Date(), user.getId());

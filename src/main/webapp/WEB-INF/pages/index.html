@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group of Groups</title>
-    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
     <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
     <link rel="stylesheet" th:href="@{/resources/css/root.css}">
     <link rel="stylesheet" th:href="@{/resources/css/common.css}">
@@ -38,12 +38,18 @@
         <div id="content-block" class="block">
             <div class="menu-top">
                 <ul>
-                    <li><a th:href="@{/}" th:text="#{header.news}">Новости</a></li>
-                    <li><a th:href="@{/}" th:text="#{header.cost}">Тарифы</a></li>
+                    <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
+                    <li><a th:href="@{/users}" th:text="#{header.user}"></a></li>
                 </ul>
                 <div class="horizontal-buttons">
-                    <a th:href="@{/login}" th:text="#{header.sign-in}"></a>
-                    <a th:href="@{/registration}" th:text="#{header.sign-up}"></a>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <a th:href="@{'/profile/'+${#authentication.name}}" th:text="#{header.profile}"></a>
+                        <a th:href="@{/logout}" th:text="#{header.log-out}"></a>
+                    </th:block>
+                    <th:block sec:authorize="!isAuthenticated()">
+                        <a th:href="@{/login}" th:text="#{header.sign-in}"></a>
+                        <a th:href="@{/registration}" th:text="#{header.sign-up}"></a>
+                    </th:block>
                 </div>
             </div>
             <div class="text">

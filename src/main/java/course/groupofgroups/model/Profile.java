@@ -12,9 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "Profile")
 public class Profile extends CommonData {
@@ -29,6 +32,7 @@ public class Profile extends CommonData {
     private String photo;
 
     @Column(name = "date_of_birth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
     @Column(name = "phone")
@@ -37,8 +41,9 @@ public class Profile extends CommonData {
     @Column(name = "autobiography")
     private String autobiography;
 
-    @OneToMany(mappedBy = "profile")
-    private List<Education> educations;
+    @ManyToOne
+    @JoinColumn(name = "education_id")
+    private Education education;
 
     @ManyToOne
     @JoinColumn(name = "hometown")
@@ -46,13 +51,13 @@ public class Profile extends CommonData {
 
     @ManyToMany
     @JoinTable(name = "profile_language",
-            joinColumns = @JoinColumn(name = "pfofile_id"),
+            joinColumns = @JoinColumn(name = "profile_id"),
             inverseJoinColumns = @JoinColumn(name = "language_id"))
     private List<Language> languages;
 
     @ManyToMany
     @JoinTable(name = "profile_interest",
-            joinColumns = @JoinColumn(name = "pfofile_id"),
+            joinColumns = @JoinColumn(name = "profile_id"),
             inverseJoinColumns = @JoinColumn(name = "interest_id"))
     private List<Interest> interests;
 

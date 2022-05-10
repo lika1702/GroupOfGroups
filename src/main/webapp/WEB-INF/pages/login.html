@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход Group of Groups</title>
-    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
     <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
     <link rel="stylesheet" th:href="@{/resources/css/root.css}">
     <link rel="stylesheet" th:href="@{/resources/css/common.css}">
@@ -14,10 +14,10 @@
 
 <body>
     <div id="login-container">
-       <div th:replace="~{template.html::#header}"></div>
+        <div th:replace="~{template.html::#header}"></div>
         <section>
             <div class="search-bar">
-                <form action="" method="post">
+                <form action="">
                     <input type="text" th:placeholder="#{header.search}">
                     <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
@@ -26,9 +26,15 @@
             </div>
             <div class="login-form">
                 <h2 th:text="#{login.sign-in.header}"></h2>
-                <form th:action="@{/login}">
+                <div th:if="${param.error != null}" class="message error-message">
+                    <p th:text="#{login.error-message}"></p>
+                </div>
+                <div th:if="${param.logout != null}" class="message success-message">
+                    <p th:text="#{login.success-message}"></p>
+                </div>
+                <form th:action="@{/login}" method="post">
                     <input type="text" placeholder="E-mail" name="username">
-                    <input type="text" th:placeholder="#{login.placeholder.password}" name="password">
+                    <input type="password" th:placeholder="#{login.placeholder.password}" name="password">
                     <div class="horizontal-buttons">
                         <button th:text="#{login.sign-in.button}"></button>
                         <a th:href="@{/registration}" th:text="#{login.sign-up.button}"></a>

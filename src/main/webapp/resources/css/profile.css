@@ -37,7 +37,8 @@ body {
     justify-content: center;
 }
 
-#profile-block .photo-block .edit-buttons a {
+#profile-block .photo-block .edit-buttons button,
+#users-table .btn {
     width: 40px;
     height: 40px;
     margin: 0 10px;
@@ -51,10 +52,48 @@ body {
     transition: all .3s ease;
 }
 
-#profile-block .photo-block .edit-buttons a:hover {
+#profile-block .photo-block .edit-buttons button:hover,
+#users-table .btn:hover {
     border: 2px solid var(--black);
     color: var(--black);
     background: var(--light-blue);
+}
+
+#profile-block .photo-block .edit-buttons a,
+#users-table a.write-message {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    border-radius: 10px;
+    border: 2px solid var(--black);
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    transition: all .3s ease;
+}
+
+#profile-block .photo-block .edit-buttons a:hover,
+#users-table a.write-message:hover {
+    border: 2px solid var(--black);
+    color: var(--black);
+    background: var(--light-blue);
+}
+
+#profile-block .photo-block .edit-buttons .ref-write-message,
+#users-table .write-message {
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    font: 16px var(--sans-serif);
+}
+
+#profile-block .photo-block .edit-buttons .ref-write-message span,
+#users-table .write-message span {
+    width: auto;
+    display: block;
+    padding-left: 10px;
 }
 
 #profile-block .information-block {
@@ -62,7 +101,8 @@ body {
     padding: 30px 100px 30px 30px;
 }
 
-#profile-block .information-block .name-block h1 {
+#profile-block .information-block .name-block h1,
+#profile-block .edit-form h1 {
     font: bold 35px var(--sans-serif);
     color: var(--black);
     margin-bottom: 10px;
@@ -74,6 +114,7 @@ body {
 }
 
 #profile-block .information-block .personal-data {
+    width: 100%;
     margin-top: 30px;
     border-collapse: collapse;
 }
@@ -83,7 +124,8 @@ body {
     color: var(--black);
 }
 
-#profile-block .information-block .personal-data th {
+#profile-block .information-block .personal-data th,
+#profile-block .edit-form table th {
     padding: 30px 0 5px;
     font: italic 16px var(--sans-serif);
     color: var(--blue);
@@ -94,6 +136,11 @@ body {
 #profile-block .information-block .personal-data td {
     padding: 10px 0 0;
     vertical-align: top;
+}
+
+#profile-block .information-block .personal-data td.not-assignment {
+    font: 14px var(--sans-serif);
+    color: var(--gray);
 }
 
 #profile-block .information-block .personal-data td ul {
@@ -118,6 +165,304 @@ body {
     color: var(--orange);
     transform: scale(1.1);
 }
+
 #profile-block .information-block .personal-data td ul li:hover a {
     color: var(--orange);
+}
+
+#profile-block .edit-form {
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+#profile-block .edit-form table {
+    width: 70%;
+    margin: 30px auto 0;
+    font: 16px var(--sans-serif);
+    border-collapse: collapse;
+}
+
+#profile-block .edit-form table td {
+    padding: 10px;
+}
+
+#profile-block .edit-form table td.language-list {
+    text-align: left;
+    text-decoration: underline;
+}
+
+#profile-block .edit-form table td.language-list ul {
+    display: flex;
+}
+
+#profile-block .edit-form table td.language-list ul li {
+    font-size: 14px;
+    margin-right: 30px;
+}
+
+#profile-block .edit-form table tr td:first-child {
+    width: 30%;
+}
+
+#profile-block .edit-form table td input,
+#profile-block .edit-form table td select,
+#profile-block .edit-form table td datalist {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 100px;
+    border: 1px solid var(--black);
+    background: var(--white);
+    font: 16px var(--sans-serif);
+    color: var(--black);
+}
+
+#profile-block .edit-form table td textarea {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--black);
+    font: 16px var(--sans-serif);
+    resize: none;
+}
+
+#profile-block .edit-form table td .labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#profile-block .edit-form table td label {
+    width: 30%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 12px;
+}
+
+#profile-block .edit-form table td label input {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--black);
+    background: var(--white);
+    transition: all .2s linear;
+}
+
+#profile-block .edit-form table td a {
+    width: 40%;
+    height: 40px;
+    margin: 0 0 0 auto;
+    border-radius: 10px;
+    border: 2px solid var(--black);
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    transition: all .3s ease;
+}
+
+#profile-block .edit-form button {
+    height: 40px;
+    padding: 0 30px;
+    margin: 50px auto;
+    border-radius: 100px;
+    border: 2px solid var(--blue);
+    background: var(--blue);
+    box-shadow: 0 5px 1px var(--dark-blue);
+    font: 20px var(--sans-serif);
+    color: var(--white);
+    transition: all .3s ease-out;
+    display: flex;
+    align-items: center;
+}
+
+#profile-block .edit-form button:active {
+    transform: translateY(3px);
+    box-shadow: 0 -2px var(--dark-blue);
+    border-color: var(--dark-blue);
+}
+
+#profile-block .edit-form table td input::placeholder {
+    font: italic 14px var(--sans-serif);
+    color: var(--gary);
+}
+
+#profile-block .edit-form table td.header-text {
+    padding-top: 20px;
+    text-align: left;
+}
+
+#learned-lang {
+    position: relative;
+    transition: all .2s linear;
+}
+
+#learned-lang:hover::after {
+    content: "";
+    width: 3px;
+    height: 15px;
+    background: var(--red);
+    transform: rotateZ(45deg);
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#learned-lang:hover::before {
+    content: "";
+    width: 3px;
+    height: 15px;
+    background: var(--red);
+    transform: rotateZ(-45deg);
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#window {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#window form {
+    width: 30%;
+    height: 40%;
+    padding: 30px;
+    background: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#window form span {
+    position: absolute;
+    top: -40px;
+    right: -20px;
+}
+
+#window form span::before {
+    content: "";
+    width: 5px;
+    height: 30px;
+    background: rgba(255, 255, 255, .7);
+    transform: rotateZ(45deg);
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+#window form span::after {
+    content: "";
+    width: 5px;
+    height: 30px;
+    background: rgba(255, 255, 255, .7);
+    transform: rotateZ(-45deg);
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+#window form input {
+    width: auto;
+    height: 40px;
+    padding: 0 20px;
+    font: 16px var(--sans-serif);
+    color: var(--black);
+}
+
+#window form button {
+    width: auto;
+    height: 40px;
+    padding: 0 20px;
+    margin-top: 50px;
+    border-radius: 10px;
+    border: 2px solid var(--black);
+    background: var(--black);
+    font: 16px var(--sans-serif);
+    color: var(--white);
+}
+
+#users-table {
+    width: 100%;
+    margin: 30px 50px;
+    border-collapse: collapse;
+}
+
+#users-table td {
+    padding: 50px 0;
+}
+
+#users-table td:first-child {
+    width: 150px;
+}
+
+#users-table .photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--gray);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#users-table .photo img {
+    width: 100%;
+}
+
+#users-table td:nth-child(2) {
+    padding-left: 30px;
+    vertical-align: top;
+}
+
+#users-table h2 a {
+    font: bold 25px var(--sans-serif);
+    color: var(--black);
+    margin-bottom: 10px;
+}
+
+#users-table p {
+    font: 16px var(--sans-serif);
+    color: var(--black);
+}
+
+#users-table a.write-message {
+    width: 270px;
+    margin-top: 50px;
+    margin-left: 0;
+}
+
+#users-table tr {
+    position: relative;
+}
+
+#users-table tr::after {
+    content: "";
+    width: 90%;
+    height: 1px;
+    background: rgb(237, 237, 237);
+    background: linear-gradient(90deg, rgba(237, 237, 237, 1) 0%, rgba(39, 40, 42, 0.6842087176667542) 50%, rgba(237, 237, 237, 1) 100%);
+    position: absolute;
+    bottom: 1px;
+    left: 5%;
 }

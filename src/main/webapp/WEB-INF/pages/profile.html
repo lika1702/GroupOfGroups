@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя страница Group of Groups</title>
-    <link rel="shortcut icon" th:href="@{/resources/img/logo.png}" type="image/png">
+    <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
     <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
     <link rel="stylesheet" th:href="@{/resources/css/root.css}">
     <link rel="stylesheet" th:href="@{/resources/css/common.css}">
@@ -16,87 +16,132 @@
     <div th:replace="~{template.html::chat-header}"></div>
     <div id="profile-block">
         <div class="photo-block">
-            <div class="photo">
-                <img src="D:/Images/Мори Огай/.jpg" alt="">
+            <div id="window">
+                <form th:action="@{/profile/image}" method="post" enctype="multipart/form-data">
+                    <span id="close"></span>
+                    <input type="hidden" th:value="${user.email}" name="email">
+                    <input type="hidden" th:value="${user.profile.id}" name="id">
+                    <input type="file" name="photo">
+                    <button>Загрузить</button>
+                </form>
             </div>
-            <div class="edit-buttons">
-                <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+            <div class="photo">
+                <img th:if="${user.profile.photo}" th:src="${user.profile.photo}" alt="">
+                <img th:unless="${user.profile.photo}" src="" alt="">
+            </div>
+            <th:block sec:authorize="!isAuthenticated()">
+                <div class="edit-buttons">
+                    <a href="" class="ref-write-message"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                        </svg><span th:text="#{profile.button.write-message}"></span></a>
+                </div>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <th:block th:if="${#authentication.name} == ${user.email}">
+                        <div class="edit-buttons">
+<a href="" id="call-modal"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
                         <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
                         <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
                     </svg></a>
-                <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                    </svg></a>
+                            <form th:action="@{/settings}" method="post">
+                                <input type="hidden" th:value="${user.id}" name="id">
+                                <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg></button>
+                            </form>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${#authentication.name} != ${user.email}">
+                        <div class="edit-buttons">
+                            <a href="" class="ref-write-message"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 20 20">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                                </svg><span th:text="#{profile.button.write-message}"></span></a>
+                        </div>
+                    </th:block>
+                </th:block>
+            </div>
+            <div class="information-block">
+                <div class="name-block">
+                    <h1 th:text="${user.profile.surname} + ' ' + ${user.profile.name}"></h1>
+                    <p th:text="${user.email}"></p>
+                </div>
+                <table class="personal-data">
+                    <tr>
+                        <th th:text="#{profile.table.header-1}" colspan="2"></th>
+                    </tr>
+                    <tr>
+                        <td th:text="#{profile.table.header-1.cell-1}"></td>
+                        <td th:if="${user.profile.dateOfBirth}" th:text="${user.profile.dateOfBirth}"></td>
+                        <td th:unless="${user.profile.dateOfBirth}" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{profile.table.header-1.cell-2}"></td>
+                        <td th:if="${user.profile.phone}" th:text="${user.profile.phone}"></td>
+                        <td th:unless="${user.profile.phone}" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{profile.table.header-1.cell-3}"></td>
+                        <td th:if="${user.profile.hometown}" th:text="${user.profile.hometown.name}"></td>
+                        <td th:unless="${user.profile.hometown}" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{profile.table.header-2}" colspan="2"></th>
+                    </tr>
+                    <tr>
+                        <td th:text="#{profile.table.header-2.cell-1}"></td>
+                        <td th:unless="${user.profile.education}" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                        <td th:if="${user.profile.education}" th:text="${user.profile.education.shortName} + ' (' + ${user.profile.education.level} + ')'"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="#{profile.table.header-2.cell-2}"></td>
+                        <td th:if="${user.profile.languages.size()}==0" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                        <td th:if="${user.profile.languages.size()}!=0">
+                            <ul>
+                                <th:block th:each="lang:${user.profile.languages}">
+                                    <li th:text="${lang.name}"></li>
+                                </th:block>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{profile.table.header-3}" colspan="2"></th>
+                    </tr>
+                    <tr>
+                        <td colspan="2" th:if="${user.profile.autobiography}" th:text="${user.profile.autobiography}"></td>
+                        <td colspan="2" th:unless="${user.profile.autobiography}" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{profile.table.header-4}" colspan="2"></th>
+                    </tr>
+                    <tr>
+                        <td colspan="2" th:if="${user.profile.interests.size()}==0" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                        <td colspan="2" th:if="${user.profile.interests.size()}!=0">
+                            <ul>
+                                <th:block th:each="interest:${user.profile.interests}">
+                                    <li><a th:href="@{/}" th:text="${interest.name}">Книги</a></li>
+                                </th:block>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="information-block">
-            <div class="name-block">
-                <h1>Фамилия Имя</h1>
-                <p>Rintarou-san@yandex.by</p>
-            </div>
-            <table class="personal-data">
-                <tr>
-                    <th th:text="#{profile.table.header-1}" colspan="2"></th>
-                </tr>
-                <tr>
-                    <td th:text="#{profile.table.header-1.cell-1}"></td>
-                    <td>10.02.2002</td>
-                </tr>
-                <tr>
-                    <td th:text="#{profile.table.header-1.cell-2}"></td>
-                    <td>8 (033) 361 95 93</td>
-                </tr>
-                <tr>
-                    <td th:text="#{profile.table.header-1.cell-3}"></td>
-                    <td>Верхнедвинск</td>
-                </tr>
-                <tr>
-                    <th th:text="#{profile.table.header-2}" colspan="2"></th>
-                </tr>
-                <tr>
-                    <td th:text="#{profile.table.header-2.cell-1}"></td>
-                    <td>Неоконченное высшее</td>
-                </tr>
-                <tr>
-                    <td th:text="#{profile.table.header-2.cell-2}"></td>
-                    <td>БГУИР (МРТИ)</td>
-                </tr>
-                <tr>
-                    <td th:text="#{profile.table.header-2.cell-3}"></td>
-                    <td>
-                        <ul>
-                            <li>Русский</li>
-                            <li>Английский</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <th th:text="#{profile.table.header-3}" colspan="2"></th>
-                </tr>
-                <tr>
-                    <td colspan="2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia obcaecati iusto in culpa magni quibusdam ipsam iure, omnis sed possimus maxime tempora voluptatibus et? Illo natus accusantium, provident facilis quam nisi ullam! Odit eaque reiciendis blanditiis eveniet in maiores fuga velit id, delectus, perferendis quos, ut sit suscipit rem! Totam odit deleniti voluptate minima saepe, a placeat voluptates ad aut voluptas obcaecati. Voluptas tempore nam, dolorem praesentium tenetur animi quibusdam reiciendis, sint totam, enim maiores dignissimos aliquam accusamus quae cum voluptate provident aperiam eos velit laudantium magni rerum earum exercitationem culpa! Itaque voluptatibus quibusdam, enim autem. Voluptate rem, cum impedit voluptatem ut odio praesentium. Eveniet laboriosam illo, numquam fugiat quasi similique vel ipsum omnis voluptate ea facere nobis necessitatibus, quae inventore odio animi ab? Doloribus inventore facilis culpa, at quibusdam officia debitis perspiciatis temporibus!</td>
-                </tr>
-                <tr>
-                    <th th:text="#{profile.table.header-4}" colspan="2"></th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <ul>
-                            <li><a th:href="@{/}">Книги</a></li>
-                            <li><a th:href="@{/}">Музыка</a></li>
-                            <li><a th:href="@{/}">Искусство</a></li>
-                            <li><a th:href="@{/}">Языки</a></li>
-                            <li><a th:href="@{/}">Путешествия</a></li>
-                            <li><a th:href="@{/}">Боевые искусства</a></li>
-                            <li><a th:href="@{/}">Фильмы</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div th:replace="~{template.html::footer}"></div>
-</body>
+        <div th:replace="~{template.html::footer}"></div>
+        <script>
+        const btn = document.querySelector("#call-modal");
+        const win = document.querySelector("#window");
+        const close = document.querySelector("#close");
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            win.style = 'display: flex;';
+        })
+
+        close.addEventListener('click', () => {
+            win.style = 'display:none;;'
+        })
+
+    </script>
+    </body>
 
 </html>
