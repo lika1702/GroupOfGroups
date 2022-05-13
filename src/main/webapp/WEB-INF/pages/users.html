@@ -8,6 +8,9 @@
     <link rel="shortcut icon" th:href="@{/resources/img/logo/logo_sm.png}" type="image/png">
     <link rel="stylesheet" th:href="@{/resources/css/reset.css}">
     <link rel="stylesheet" th:href="@{/resources/css/root.css}">
+    <th:block th:if="${design}=='light'">
+        <link rel="stylesheet" th:href="@{/resources/css/root_dark.css}">
+    </th:block>
     <link rel="stylesheet" th:href="@{/resources/css/common.css}">
     <link rel="stylesheet" th:href="@{/resources/css/profile.css}">
 </head>

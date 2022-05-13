@@ -57,12 +57,16 @@ public class UserProfile extends CommonData {
     @OneToMany(mappedBy = "user")
     private List<Message> messages;
 
+    @OneToMany(mappedBy = "author")
+    private List<News> news;
+
     public UserProfile() {
     }
 
-    public UserProfile(String email, String password, Date dateOfRegistration,
+    public UserProfile(Long id, String email, String password, Date dateOfRegistration,
             Date lastLogin, Boolean block, String role, String design,
             String locale, Profile profile, List<Dialog> dialogs, List<Message> messages) {
+        super(id);
         this.email = email;
         this.password = password;
         this.profile = profile;

@@ -15,6 +15,7 @@
     </th:block>
     <link rel="stylesheet" th:href="@{/resources/css/common.css}">
     <link rel="stylesheet" th:href="@{/resources/css/index.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/news.css}">
 </head>
 
 <body>
@@ -43,7 +44,7 @@
         <div id="content-block" class="block">
             <div class="menu-top">
                 <ul>
-                    <li><a th:href="@{/news/all}" th:text="#{header.news}"></a></li>
+                    <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
                     <li><a th:href="@{/users}" th:text="#{header.user}"></a></li>
                 </ul>
                 <div class="horizontal-buttons">
@@ -70,76 +71,35 @@
         </div>
     </section>
 
-    <section id="combine-messenger">
-        <div id="header-block">
-            <h2 th:text="#{index.header}"></h2>
+    <section id="news">
+        <div class="form-block" sec:authorize="isAuthenticated()">
+            <h2>Предложить новость</h2>
+            <form th:action="@{/news/offer}" method="post" th:object="${newNew}">
+                <input type="text" name="header" placeholder="Заголовок">
+                <input type="text" name="topic" placeholder="Тема">
+                <textarea name="text" id="" placeholder="Текст ..."></textarea>
+                <button>Отправить</button>
+            </form>
         </div>
-        <div id="text-block">
-            <div>
-                <p th:text="#{index.main-content.text-1}"></p>
-            </div>
-            <div>
-                <p th:text="#{index.main-content.text-2}"></p>
-            </div>
+        <div class="news-block">
+           <h2>Новостная лента</h2>
+            <th:block th:if="${news}">
+                <th:block th:each="oneNew:${news}">
+                    <div class="one-new">
+                        <h3 th:text="${oneNew.getHeader()}"></h3>
+                        <p class="topic" th:text="'Тема: '+${oneNew.getTopic()}"></p>
+                        <p class="new-text" th:text="${oneNew.text}"></p>
+                        <div class="author">
+                            <a th:href="@{'/profile/'+${oneNew.author.email}}" th:text="${oneNew.author.profile.surname}+' '+${oneNew.author.profile.name}"></a>
+                            <span th:text="${oneNew.date}"></span>
+                        </div>
+                    </div>
+                </th:block>
+            </th:block>
+            <th:block th:unless="${news}">
+                <p class="empty-message">Новостей пока нет</p>
+            </th:block>
         </div>
-    </section>
-
-    <section id="card-block">
-        <div class="card">
-            <div class="photo"><img th:src="@{/resources/img/icons/user.png}" alt=""></div>
-            <div class="card-descryption">
-                <span th:text="#{index.card-1.digit}"></span>
-                <p th:text="#{index.card-1.text}"></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="photo"><img th:src="@{/resources/img/icons/message.png}" alt=""></div>
-            <div class="card-descryption">
-                <span th:text="#{index.card-2.digit}"></span>
-                <p th:text="#{index.card-2.text}"></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="photo"><img th:src="@{/resources/img/icons/project.png}" alt=""></div>
-            <div class="card-descryption">
-                <span th:text="#{index.card-3.digit}"></span>
-                <p th:text="#{index.card-3.text}"></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="question">
-        <div class="benefits">
-            <div class="benefit">
-                <h3 th:text="#{index.benefit-1.header}"></h3>
-                <p th:text="#{index.benefit-1.text}"></p>
-            </div>
-            <div class="benefit">
-                <h3 th:text="#{index.benefit-2.header}"></h3>
-                <p th:text="#{index.benefit-2.text}"></p>
-            </div>
-        </div>
-        <div id="middle-part">
-            <h2 th:text="#{index.benefits.header}"></h2>
-        </div>
-        <div class="benefits">
-            <div class="benefit">
-                <h3 th:text="#{index.benefit-3.header}"></h3>
-                <p th:text="#{index.benefit-3.text}"></p>
-            </div>
-            <div class="benefit">
-                <h3 th:text="#{index.benefit-4.header}"></h3>
-                <p th:text="#{index.benefit-4.text}"></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="support">
-        <h2 th:text="#{index.support.header}"></h2>
-        <p th:text="#{index.support.text}"></p>
-        <p><a href="tel:+375333619593" th:text="#{index.support.phone-1}"></a></p>
-        <p><a href="tel:+375295950817" th:text="#{index.support.phone-2}"></a></p>
-        <p><a href="mailto: Rintarou-san@yandex.by" th:text="#{index.support.email}"></a></p>
     </section>
 
     <div th:replace="~{template.html::footer}"></div>

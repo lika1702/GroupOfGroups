@@ -5,7 +5,7 @@
             <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
             <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
             <li><a th:href="@{/users}" th:text="#{header.user}"></a></li>
-            <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
+            <li><a th:href="@{/news/all}" th:text="#{header.news}"></a></li>
         </ul>
     </nav>
 </header>
@@ -18,7 +18,7 @@
             <li><a th:href="@{/}" th:text="#{header.analytics}"></a></li>
             <li><a th:href="@{/chat}" th:text="#{header.chat}"></a></li>
             <li><a th:href="@{/users}" th:text="#{header.user}"></a></li>
-            <li><a th:href="@{/}" th:text="#{header.news}"></a></li>
+            <li><a th:href="@{/news/all}" th:text="#{header.news}"></a></li>
         </ul>
     </nav>
 </div>
@@ -39,7 +39,7 @@
         <li><a th:href="@{/}" th:text="#{footer.main-page}"></a></li>
         <li><a th:href="@{/}" th:text="#{footer.analytics}"></a></li>
         <li><a th:href="@{/chat}" th:text="#{footer.chat}"></a></li>
-        <li><a th:href="@{/}" th:text="#{footer.news}"></a></li>
+        <li><a th:href="@{/news/all}" th:text="#{footer.news}"></a></li>
         <li><a th:href="@{/users}" th:text="#{footer.user}"></a></li>
     </ul>
     <ul class="languages">
@@ -47,5 +47,6 @@
         <li><a th:href="@{/?lang=en}">English</a></li>
         <li><a th:href="@{/?lang=de}">Deutsch</a></li>
     </ul>
+    <a class="change-design" sec:authorize="isAuthenticated()" th:href="@{/design/change}">Смена темы</a>
     <p>Copyright 2022 © Group of Groups</p>
 </footer>

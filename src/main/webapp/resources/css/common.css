@@ -19,9 +19,7 @@ body {
     margin-bottom: 50px;
 }
 
-#menu-block .menu {
-
-}
+#menu-block .menu {}
 
 #menu-block .menu ul li {
     height: 40px;
@@ -89,6 +87,7 @@ body {
 #footer .footer-references li a:hover {
     color: var(--blue);
 }
+
 #footer .languages li a:hover {
     color: var(--orange);
 }
@@ -99,4 +98,9 @@ body {
     font: 14px var(--sans-serif);
     color: var(--white);
     text-align: center;
+}
+
+#footer .change-design {
+    font: 14px var(--sans-serif);
+    color: var(--white);
 }

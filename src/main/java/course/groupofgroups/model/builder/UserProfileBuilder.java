@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface UserProfileBuilder {
 
+    public UserProfileBuilder setId(Long id);
+
     public UserProfileBuilder setEmail(String email);
 
     public UserProfileBuilder setPassword(String password);

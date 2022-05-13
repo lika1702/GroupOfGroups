@@ -2,6 +2,7 @@ package course.groupofgroups.controller;
 
 import course.groupofgroups.model.UserProfile;
 import course.groupofgroups.service.UserProfileService;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,7 +42,7 @@ public class UserProfileController {
     public String usersPage(Model model) {
         UserDetails userInfo = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserProfile user = service.findByEmail(userInfo.getUsername());
-
+        model.addAttribute("design", user.getDesign());
         model.addAttribute("users", service.allUsers());
         model.addAttribute("exist", user);
         return "users";
@@ -69,5 +70,21 @@ public class UserProfileController {
         System.out.println(user.getProfile().getLanguages());
         service.edit(user);
         return "redirect:/profile/" + user.getEmail();
+    }
+
+    @GetMapping("/design/change")
+    public String designChange(HttpServletRequest request) {
+        UserDetails userInfo = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserProfile user = service.findByEmail(userInfo.getUsername());
+        switch (user.getDesign()) {
+            case "light":
+                user.setDesign("dark");
+                break;
+            case "dark":
+                user.setDesign("light");
+                break;
+        }
+        service.edit(user);
+        return "redirect:" + request.getHeader("referer");
     }
 }

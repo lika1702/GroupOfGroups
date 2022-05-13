@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserProfileBuilderImpl implements UserProfileBuilder {
 
+    private Long id;
     private String email;
     private String password;
     private Date dateOfRegistration;
@@ -88,8 +89,14 @@ public class UserProfileBuilderImpl implements UserProfileBuilder {
     }
 
     @Override
+    public UserProfileBuilder setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    @Override
     public UserProfile build() {
-        return new UserProfile(email, password, dateOfRegistration, lastLogin, block, role, design, locale, profile, dialogs, messages);
+        return new UserProfile(id, email, password, dateOfRegistration, lastLogin, block, role, design, locale, profile, dialogs, messages);
     }
 
 }

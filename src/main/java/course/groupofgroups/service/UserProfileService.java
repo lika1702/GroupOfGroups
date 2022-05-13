@@ -10,6 +10,14 @@ import java.util.List;
 public interface UserProfileService {
 
     public List<UserProfile> allUsers();
+    
+    public List<UserProfile> allUSER();
+    
+    public List<UserProfile> allADMIN();
+    
+    public List<UserProfile> allBLOCK();
+    
+    public List<UserProfile> allUNBLOCK();
 
     public List<City> findCities();
 
@@ -27,9 +35,13 @@ public interface UserProfileService {
 
     public void edit(UserProfile user);
 
-    public void delete(Long id);
+    public boolean delete(Long id);
 
-    public void setBlock(UserProfile user);
+    public boolean setBlock(UserProfile user);
 
-    public void setRole(UserProfile user);
+    public String setRole(UserProfile user);
+    
+    public String setDesign(UserProfile user);
+    
+    public String setLocale(UserProfile user);
 }

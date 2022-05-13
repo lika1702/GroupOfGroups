@@ -50,7 +50,13 @@
                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                     </svg></button>
                             </form>
+                            <a th:href="@{/facebook/groups}">Показать группы</a>
                         </div>
+                        <th:block th:if="${posts}">
+                            <th:block th:each="post:${posts}">
+                                <div th:text="${post.message}"></div>
+                            </th:block>
+                        </th:block>
                     </th:block>
                     <th:block th:if="${#authentication.name} != ${user.email}">
                         <div class="edit-buttons">
@@ -95,7 +101,8 @@
                     </tr>
                     <tr>
                         <td th:text="#{profile.table.header-2.cell-2}"></td>
-                        <td th:if="${user.profile.languages.size()}==0" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                        <th:block th:if="${user.profile.languages}">
+                            <td th:if="${user.profile.languages.size()}==0" class="not-assignment" th:text="#{profile.empty-field}"></td>
                         <td th:if="${user.profile.languages.size()}!=0">
                             <ul>
                                 <th:block th:each="lang:${user.profile.languages}">
@@ -103,6 +110,10 @@
                                 </th:block>
                             </ul>
                         </td>
+                        </th:block>
+                        <th:block th:unless="${user.profile.languages}">
+                            <td class="not-assignment" th:text="#{profile.empty-field}"></td>
+                        </th:block>
                     </tr>
                     <tr>
                         <th th:text="#{profile.table.header-3}" colspan="2"></th>
@@ -115,14 +126,19 @@
                         <th th:text="#{profile.table.header-4}" colspan="2"></th>
                     </tr>
                     <tr>
-                        <td colspan="2" th:if="${user.profile.interests.size()}==0" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                       <th:block th:if="${user.profile.interests}">
+                          <td colspan="2" th:if="${user.profile.interests.size()}==0" class="not-assignment" th:text="#{profile.empty-field}"></td>
                         <td colspan="2" th:if="${user.profile.interests.size()}!=0">
                             <ul>
                                 <th:block th:each="interest:${user.profile.interests}">
                                     <li><a th:href="@{/}" th:text="${interest.name}">Книги</a></li>
                                 </th:block>
                             </ul>
-                        </td>
+                        </td> 
+                       </th:block>
+                        <th:block th:unless="${user.profile.interests}">
+                            <td colspan="2" class="not-assignment" th:text="#{profile.empty-field}"></td>
+                        </th:block>
                     </tr>
                 </table>
             </div>

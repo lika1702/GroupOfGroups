@@ -30,32 +30,16 @@ public class AdminController {
         }
         switch (filter) {
             case "block":
-                for (UserProfile u : all) {
-                    if (u.getBlock()) {
-                        filt.add(u);
-                    }
-                }
+                filt = service.allBLOCK();
                 break;
             case "unblock":
-                for (UserProfile u : all) {
-                    if (!u.getBlock()) {
-                        filt.add(u);
-                    }
-                }
+                filt = service.allUNBLOCK();
                 break;
             case "admin":
-                for (UserProfile u : all) {
-                    if (u.getRole().equals("ADMIN")) {
-                        filt.add(u);
-                    }
-                }
+                filt = service.allADMIN();
                 break;
             case "user":
-                for (UserProfile u : all) {
-                    if (u.getRole().equals("USER")) {
-                        filt.add(u);
-                    }
-                }
+                filt = service.allUSER();
                 break;
         }
         model.addAttribute("users", filt);

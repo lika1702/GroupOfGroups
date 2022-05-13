@@ -1,0 +1,147 @@
+#news {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: var(--light-gray);
+}
+
+#news .form-block {
+    width: 70%;
+}
+
+#news .form-block h2 {
+    margin-bottom: 30px;
+    font: bold 25px var(--sans-serif);
+    color: var(--black);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#news .form-block form {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#news .form-block input,
+#news .form-block textarea {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    font: 16px var(--sans-serif);
+    color: var(--black);
+}
+
+#news .form-block textarea {
+    height: 100px;
+    padding: 20px;
+    border-radius: 20px;
+    resize: none;
+}
+
+#news .form-block input::placeholder,
+#news .form-block textarea::placeholder {
+    font: italic 14px var(--sans-serif);
+    color: var(--dark-gray);
+}
+
+#news .form-block button {
+    margin: 20px;
+}
+
+#news .news-block {
+    width: 70%;
+}
+
+#news .news-block h2 {
+    margin: 20px;
+    font: bold 45px var(--sans-serif);
+    color: var(--black);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#news .news-block .empty-message {
+    margin: 30px;
+    font: italic bold 60px var(--sans-serif);
+    color: var(--gray);
+    text-align: center;
+    text-transform: uppercase;
+    opacity: .2;
+}
+
+#news .one-new {
+    width: 100%;
+    margin: 30px 0 20px;
+    padding: 30px;
+    border-radius: 20px;
+    background: #e5e5e5;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .05);
+}
+
+#news .one-new h3 {
+    margin-bottom: 20px;
+    font: bold 20px var(--sans-serif);
+    color: var(--black);
+}
+
+#news .one-new .new-text {
+    font: 16px var(--sans-serif);
+    color: var(--black);
+}
+
+#news .one-new .topic {
+    margin-bottom: 20px;
+    font: 16px var(--sans-serif);
+    color: var(--orange);
+}
+
+#news .one-new .author {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font: italic 14px var(--gray);
+}
+
+#news .one-new .author a {
+    font: italic 14px var(--sans-serif);
+    color: var(--gray);
+    transition: all .1s linear;
+}
+
+#news .one-new .author a:hover {
+    color: var(--blue);
+}
+
+#news .one-new .author span {
+    font: italic 14px var(--sans-serif);
+    color: var(--gray);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

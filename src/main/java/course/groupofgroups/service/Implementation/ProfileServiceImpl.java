@@ -38,4 +38,8 @@ public class ProfileServiceImpl implements ProfileService {
         repository.setPhotoById(url, id);
     }
 
+    public ProfileServiceImpl(ProfileRepository repository) {
+        this.repository = repository;
+    }
+
 }

@@ -17,7 +17,15 @@ public class MainController {
 
     @GetMapping(value = "/")
     public String homePage(Model model) {
-        return "index";
+        try {
+            UserDetails userInfo = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            System.out.println(userInfo);
+            UserProfile user = service.findByEmail(userInfo.getUsername());
+            model.addAttribute("design", user.getDesign());
+            return "index";
+        } catch (Exception ex) {
+            return "index";
+        }
     }
 
     @GetMapping(value = "/chat")

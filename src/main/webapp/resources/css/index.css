@@ -131,7 +131,8 @@
     width: 40%;
 }
 
-#content-block .horizontal-buttons a {
+#content-block .horizontal-buttons a,
+#news .form-block button {
     height: 40px;
     padding: 0 30px;
     border-radius: 100px;
@@ -150,7 +151,8 @@
 }
 
 #content-block .horizontal-buttons a:active,
-#content-block .horizontal-buttons a:active {
+#content-block .horizontal-buttons a:active,
+#news .form-block button:active {
     transform: translateY(3px);
     box-shadow: 0 -2px var(--dark-blue);
     border-color: var(--dark-blue);

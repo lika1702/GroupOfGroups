@@ -17,4 +17,12 @@ public class CommonData {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public CommonData() {
+
+    }
+
+    public CommonData(Long id) {
+        this.id = id;
+    }
 }

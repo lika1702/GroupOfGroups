@@ -2,6 +2,7 @@ package course.groupofgroups.controller;
 
 import course.groupofgroups.model.Dialog;
 import course.groupofgroups.model.Message;
+import course.groupofgroups.model.Profile;
 import course.groupofgroups.model.UserProfile;
 import course.groupofgroups.service.DialogService;
 import course.groupofgroups.service.MessageService;
@@ -16,7 +17,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.Connection;
+import org.springframework.social.facebook.api.Achievement;
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.Group;
+import org.springframework.social.facebook.api.GroupMembership;
+import org.springframework.social.facebook.api.PagedList;
+import org.springframework.social.facebook.api.Post;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Operations;
@@ -45,10 +51,10 @@ public class ChatController {
     @Autowired
     private DialogService service;
 
-    private FacebookConnectionFactory factory = new FacebookConnectionFactory("4816662315118241",
-            "ad58174de53c82eac007f2c4507d1021");
+    private FacebookConnectionFactory factory = new FacebookConnectionFactory("730051138122994",
+            "20e86d48698d513491d95bead1949766");
 
-    @GetMapping(value = "/useApplication")
+    @GetMapping(value = "/facebook/groups")
     public String producer() {
 
         OAuth2Operations operations = factory.getOAuthOperations();
@@ -62,25 +68,50 @@ public class ChatController {
     }
 
     @RequestMapping(value = "/forwardLogin")
-    public ModelAndView prodducer(@RequestParam("code") String authorizationCode) {
+    public String prodducer(@RequestParam("code") String authorizationCode, Model model) {
         OAuth2Operations operations = factory.getOAuthOperations();
         AccessGrant accessToken = operations.exchangeForAccess(authorizationCode, "http://localhost:8080/forwardLogin",
                 null);
 
         Connection<Facebook> connection = factory.createConnection(accessToken);
         Facebook facebook = connection.getApi();
-        String[] fields = {"id", "email", "first_name", "last_name"};
-        User userProfile = facebook.fetchObject("me", User.class, fields);
-        ModelAndView model = new ModelAndView("profile");
-        model.addObject("user", userProfile);
-        return model;
+
+        String[] fields = {"email"};
+        UserProfile userProfile = facebook.fetchObject("me", UserProfile.class, fields);
+        System.out.println(userProfile.getEmail());
+
+        String[] name = facebook.fetchObject("me", Profile.class, "name").getName().split(" ");
+
+        userProfile.setProfile(new Profile());
+        userProfile.getProfile().setSurname(name[1]);
+        userProfile.getProfile().setName(name[0]);
+        model.addAttribute("user", userProfile);
+        return "profile";
 
     }
 
-    @RequestMapping(value = "/facebook")
-    public String facebookData(Model model) {
+    @RequestMapping(value = "/profile/me")
+    public String facebookData(@RequestParam("code") String authorizationCode, Model model) {
+        OAuth2Operations operations = factory.getOAuthOperations();
+        AccessGrant accessToken = operations.exchangeForAccess(authorizationCode, "http://localhost:8080/profile/me", null);
 
-        return "redirect:/";
+        Connection<Facebook> connection = factory.createConnection(accessToken);
+        Facebook facebook = connection.getApi();
+
+        List<Group> groups = facebook.fetchConnections("me", "groups", Group.class);
+        System.out.println(groups);
+
+        List<GroupMembership> listGroup = facebook.groupOperations().getMemberships();
+        System.out.println(listGroup);
+
+        System.out.println(facebook.toString());
+
+        UserDetails userInfo = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserProfile user = userService.findByEmail(userInfo.getUsername());
+
+        model.addAttribute("user", user);
+        model.addAttribute("posts", groups);
+        return "profile";
     }
 
     @GetMapping(value = "/chat/add/{email}")

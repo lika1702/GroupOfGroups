@@ -12,6 +12,7 @@ import course.groupofgroups.service.InterestService;
 import course.groupofgroups.service.LanguageService;
 import course.groupofgroups.service.ProfileService;
 import course.groupofgroups.service.UserProfileService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -89,8 +90,9 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         repository.deleteById(id);
+        return true;
     }
 
     @Override
@@ -101,13 +103,93 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
-    public void setBlock(UserProfile user) {
+    public boolean setBlock(UserProfile user) {
         repository.setBlockById(user.getBlock(), user.getId());
+        return !user.getBlock();
     }
 
     @Override
-    public void setRole(UserProfile user) {
+    public String setRole(UserProfile user) {
         repository.setRoleById(user.getRole(), user.getId());
+        if (user.getRole().equals("ADMIN")) {
+            return "USER";
+        } else {
+            return "ADMIN";
+        }
+    }
+
+    @Override
+    public String setDesign(UserProfile user) {
+        repository.setDesignById(user.getDesign(), user.getId());
+        if (user.getDesign().equals("light")) {
+            return "dark";
+        } else {
+            return "light";
+        }
+    }
+
+    @Override
+    public String setLocale(UserProfile user) {
+        UserProfile exist = repository.findByEmail(user.getEmail());
+        repository.setLocaleById(user.getLocale(), user.getId());
+        return exist.getLocale();
+    }
+
+    public UserProfileServiceImpl() {
+    }
+
+    public UserProfileServiceImpl(UserProfileRepository repository, ProfileService profileService, BCryptPasswordEncoder bCrypt) {
+        this.repository = repository;
+        this.profileService = profileService;
+        this.bCrypt = bCrypt;
+    }
+
+    @Override
+    public List<UserProfile> allUSER() {
+        List<UserProfile> all = repository.findAll();
+        List<UserProfile> filt = new ArrayList<>();
+        for (UserProfile u : all) {
+            if (u.getRole().equals("ADMIN")) {
+                filt.add(u);
+            }
+        }
+        return filt;
+    }
+
+    @Override
+    public List<UserProfile> allADMIN() {
+        List<UserProfile> all = repository.findAll();
+        List<UserProfile> filt = new ArrayList<>();
+        for (UserProfile u : all) {
+            if (u.getRole().equals("USER")) {
+                filt.add(u);
+            }
+        }
+        return filt;
+    }
+
+    @Override
+    public List<UserProfile> allBLOCK() {
+        List<UserProfile> all = repository.findAll();
+        List<UserProfile> filt = new ArrayList<>();
+        for (UserProfile u : all) {
+            if (u.getBlock()) {
+                filt.add(u);
+            }
+        }
+        return filt;
+    }
+
+    @Override
+    public List<UserProfile> allUNBLOCK() {
+        List<UserProfile> all = repository.findAll();
+        List<UserProfile> filt = new ArrayList<>();
+        for (UserProfile u : all) {
+            if (!u.getBlock()) {
+                filt.add(u);
+            }
+        }
+        return filt;
     }
 
 }

@@ -26,5 +26,15 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
     @Modifying
     @Query("update UserProfile u set u.role=?1 where u.id=?2")
     void setRoleById(String role, Long id);
+    
+    @Transactional
+    @Modifying
+    @Query("update UserProfile u set u.design=?1 where u.id=?2")
+    void setDesignById(String design, Long id);
+    
+    @Transactional
+    @Modifying
+    @Query("update UserProfile u set u.locale=?1 where u.id=?2")
+    void setLocaleById(String locale, Long id);
 
 }
